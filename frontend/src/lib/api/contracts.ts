@@ -1,5 +1,15 @@
-export type User = { id: string; email: string; status: string };
-export type TokenResponse = { access_token: string; token_type: string };
+export type User = {
+  id: string;
+  employee_no: string;
+  name: string;
+  email: string | null;
+  role: "admin" | "employee";
+  status: string;
+  must_change_password: boolean;
+  password_expires_at: string | null;
+  created_at: string;
+};
+export type TokenResponse = { access_token: string; token_type: string; requires_password_change: boolean };
 
 export type Session = {
   id: string;

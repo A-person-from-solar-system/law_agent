@@ -98,7 +98,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .auth-copy { position: relative; z-index: 1; max-width: 520px; }
 .auth-copy h1 { margin: 18px 0 20px; font-family: "Songti SC", STSong, serif; font-size: clamp(38px, 5vw, 62px); font-weight: 400; line-height: 1.3; letter-spacing: .06em; }
 .auth-copy > p:last-child { max-width: 450px; color: #aabdbc; line-height: 2; }
-.auth-quote { position: relative; z-index: 1; color: #9eb0af; font-family: "Songti SC", serif; font-size: 13px; letter-spacing: .08em; }
+.auth-quote { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; color: #9eb0af; font-family: "Songti SC", serif; font-size: 13px; letter-spacing: .08em; }
 .auth-panel { display: grid; place-items: center; padding: 32px; background: radial-gradient(circle at 85% 15%, #eee7d7 0, transparent 28%), var(--paper); }
 .auth-card { width: min(410px, 100%); }
 .auth-card h2 { margin: 9px 0; font-family: "Songti SC", STSong, serif; font-size: 31px; font-weight: 500; }
@@ -114,6 +114,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .auth-submit { width: 100%; margin-top: 4px; }
 .auth-switch { margin-top: 22px; color: var(--muted); font-size: 12px; text-align: center; }
 .auth-switch a { margin-left: 6px; color: #8a6528; font-weight: 700; }
+.managed-account-note { display: flex; align-items: flex-start; gap: 8px; margin-top: 20px; padding: 11px 12px; color: #6f7e7f; border: 1px solid #d9d8d0; border-radius: 8px; background: rgba(255,255,255,.55); font-size: 11px; line-height: 1.6; }
+.managed-account-note svg { flex: 0 0 auto; margin-top: 1px; color: #9a7331; }
+.password-rules { display: flex; flex-wrap: wrap; gap: 7px 14px; margin: -5px 0 16px; color: #9aa3a3; font-size: 10px; }
+.password-rules span { display: flex; align-items: center; gap: 4px; }
+.password-rules svg { color: #c5c9c5; }
+.password-rules .rule-valid { color: #397052; }
+.password-rules .rule-valid svg { color: #397052; }
+.password-aside::after { content: "安"; }
 .mobile-auth-brand { display: none; }
 
 /* Navigation and workspace */

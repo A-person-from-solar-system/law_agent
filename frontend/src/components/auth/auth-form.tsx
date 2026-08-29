@@ -1,38 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, LoaderCircle, LockKeyhole, Mail, Scale } from "lucide-react";
+import { ArrowRight, BadgeCheck, IdCard, LoaderCircle, LockKeyhole, Scale } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import * as authApi from "@/lib/api/auth";
 import { ApiError } from "@/lib/api/client";
 import { setToken } from "@/lib/auth/token-store";
 
-const schema = z.object({ email: z.string().email("请输入有效邮箱"), password: z.string().min(8, "密码至少 8 位") });
+const schema = z.object({
+  employeeNo: z.string().regex(/^\d{6,10}$/, "员工号必须为 6 至 10 位数字"),
+  password: z.string().min(1, "请输入密码"),
+});
 
-export function AuthForm({ mode }: { mode: "login" | "register" }) {
+export function AuthForm() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
+  const [employeeNo, setEmployeeNo] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     setError("");
-    const parsed = schema.safeParse({ email, password });
+    const parsed = schema.safeParse({ employeeNo, password });
     if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "请检查输入");
-    if (mode === "register" && password !== confirm) return setError("两次输入的密码不一致");
     setLoading(true);
     try {
-      if (mode === "register") await authApi.register(email, password);
-      const token = await authApi.login(email, password);
+      const token = await authApi.login(employeeNo, password);
       setToken(token.access_token);
-      await authApi.getMe();
-      router.replace("/chat");
+      if (token.requires_password_change) router.replace("/change-password");
+      else {
+        await authApi.getMe();
+        router.replace("/chat");
+      }
     } catch (cause) {
       setError(cause instanceof ApiError ? cause.message : "暂时无法连接服务，请稍后重试");
     } finally { setLoading(false); }
@@ -48,15 +50,14 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
       <section className="auth-panel">
         <form className="auth-card" onSubmit={submit}>
           <div className="mobile-auth-brand"><Scale size={22} /><strong>衡法智策</strong></div>
-          <p className="eyebrow">{mode === "login" ? "WELCOME BACK" : "CREATE ACCOUNT"}</p>
-          <h2>{mode === "login" ? "登录法律工作台" : "创建您的账户"}</h2>
-          <p className="auth-hint">{mode === "login" ? "继续处理您的案件与法律咨询" : "开始管理案件与法律咨询"}</p>
-          <label className="field"><span>工作邮箱</span><div><Mail size={17} /><input value={email} onChange={(e) => setEmail(e.target.value)} type="email" autoComplete="email" placeholder="name@company.com" required /></div></label>
-          <label className="field"><span>密码</span><div><LockKeyhole size={17} /><input value={password} onChange={(e) => setPassword(e.target.value)} type="password" autoComplete={mode === "login" ? "current-password" : "new-password"} placeholder="至少 8 位" required /></div></label>
-          {mode === "register" && <label className="field"><span>确认密码</span><div><LockKeyhole size={17} /><input value={confirm} onChange={(e) => setConfirm(e.target.value)} type="password" autoComplete="new-password" placeholder="再次输入密码" required /></div></label>}
+          <p className="eyebrow">EMPLOYEE SIGN IN</p>
+          <h2>登录法律工作台</h2>
+          <p className="auth-hint">使用管理员为您开通的员工账号</p>
+          <label className="field"><span>员工号</span><div><IdCard size={17} /><input value={employeeNo} onChange={(event) => setEmployeeNo(event.target.value.replace(/\D/g, "").slice(0, 10))} inputMode="numeric" pattern="[0-9]{6,10}" autoComplete="username" placeholder="请输入 6～10 位员工号" required /></div></label>
+          <label className="field"><span>密码</span><div><LockKeyhole size={17} /><input value={password} onChange={(event) => setPassword(event.target.value)} type="password" autoComplete="current-password" placeholder="初始密码或当前密码" required /></div></label>
           {error && <div className="form-error" role="alert">{error}</div>}
-          <Button className="auth-submit" disabled={loading} type="submit">{loading ? <LoaderCircle className="spin" size={18} /> : <>{mode === "login" ? "进入工作台" : "注册并进入"}<ArrowRight size={17} /></>}</Button>
-          <p className="auth-switch">{mode === "login" ? "还没有账户？" : "已经有账户？"}<Link href={mode === "login" ? "/register" : "/login"}>{mode === "login" ? "立即注册" : "返回登录"}</Link></p>
+          <Button className="auth-submit" disabled={loading} type="submit">{loading ? <LoaderCircle className="spin" size={18} /> : <>进入工作台<ArrowRight size={17} /></>}</Button>
+          <div className="managed-account-note"><BadgeCheck size={15} /><span>账号由管理员统一开通。如忘记密码或账号被锁定，请联系系统管理员。</span></div>
         </form>
       </section>
     </main>

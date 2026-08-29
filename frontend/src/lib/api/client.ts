@@ -41,11 +41,15 @@ export async function apiFetch<T>(path: string, init: RequestInit = {}, authenti
   }
   const response = await fetch(`${API_BASE_URL}${path}`, { ...init, headers });
   if (!response.ok) {
+    const error = await toApiError(response);
     if (response.status === 401) {
       clearToken();
       if (typeof window !== "undefined") window.dispatchEvent(new Event("law-agent:unauthorized"));
     }
-    throw await toApiError(response);
+    if (error.code === "PASSWORD_CHANGE_REQUIRED" && typeof window !== "undefined") {
+      window.dispatchEvent(new Event("law-agent:password-change-required"));
+    }
+    throw error;
   }
   if (response.status === 204) return undefined as T;
   return response.json() as Promise<T>;

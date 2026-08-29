@@ -12,7 +12,7 @@ Stage 3 的核心目标不是单纯制作聊天页面，而是建立一层稳定
 
 ### 2.1 Stage 3 必须完成
 
-1. 注册、登录、登录态恢复和退出登录；
+1. 员工号登录、首次强制改密、登录态恢复和退出登录；
 2. 会话列表、新建会话、切换会话、修改标题和删除会话；
 3. 历史消息分页加载，只呈现 User/Assistant 消息；
 4. 基于 `fetch` 的 POST SSE 流式聊天；
@@ -51,11 +51,11 @@ Stage 3 的核心目标不是单纯制作聊天页面，而是建立一层稳定
 推荐目录：
 
 ```text
-web/
+frontend/
   app/
     (auth)/
       login/page.tsx
-      register/page.tsx
+      change-password/page.tsx
     (workspace)/
       chat/[sessionId]/page.tsx
       cases/page.tsx
@@ -112,12 +112,16 @@ web/
 
 ## 4. 页面与信息架构
 
-### 4.1 登录与注册页
+### 4.1 员工登录与首次改密页
 
-- 登录字段：邮箱、密码；
-- 注册字段：邮箱、密码、确认密码；
-- 前端校验密码不少于 8 位，但后端仍是最终校验方；
-- 登录成功后请求 `/api/auth/me` 验证身份并进入最近会话；
+- 系统不开放员工自助注册，员工账号由管理员统一创建；
+- 登录字段为 `employee_no`（6～10 位数字员工号）和密码，邮箱仅作为可选员工资料，不参与登录；
+- 管理员创建员工后生成一次性初始密码，登录响应通过 `requires_password_change` 标识是否必须改密；
+- 首次登录必须跳转 `/change-password`，输入当前临时密码、新密码和确认密码；
+- 新密码至少 12 位并同时包含字母和数字，前端先校验，后端仍是最终校验方；
+- 完成改密前不得进入会话、案件等业务页面；
+- 正常登录成功后请求 `/api/auth/me` 验证身份并进入最近会话；
+- 员工连续登录失败可能收到 `ACCOUNT_LOCKED`，前端展示后端文案且不自动重试；
 - 401 时清理无效凭证并返回登录页；
 - 错误提示使用后端 `error.message`，不得展示响应堆栈或原始异常对象。
 
@@ -148,7 +152,7 @@ web/
 
 ## 5. 当前后端 API 契约
 
-API Base URL 通过 `NEXT_PUBLIC_API_BASE_URL` 配置。除注册和登录外，所有请求必须携带：
+API Base URL 通过 `NEXT_PUBLIC_API_BASE_URL` 配置。除登录外，所有请求必须携带：
 
 ```http
 Authorization: Bearer <access_token>
@@ -158,11 +162,13 @@ Authorization: Bearer <access_token>
 
 | 方法 | 路径 | 请求/响应 |
 | --- | --- | --- |
-| POST | `/api/auth/register` | `{ email, password }` → User |
-| POST | `/api/auth/login` | `{ email, password }` → `{ access_token, token_type }` |
+| POST | `/api/auth/login` | `{ employee_no, password }` → `{ access_token, token_type, requires_password_change }` |
+| POST | `/api/auth/change-password` | `{ current_password, new_password }` → 204 |
 | GET | `/api/auth/me` | → 当前 User |
 
-当前后端只返回 Access Token，尚无 Refresh Token。前端遇到 401 时退出登录，不实现伪刷新机制。若采用 `localStorage` 存 Token，需明确其 XSS 风险；生产方案应优先由后端增加 HttpOnly、Secure、SameSite Cookie 或短期 Access Token + Refresh Token 机制。
+当前用户响应包含 `employee_no`、`name`、可选 `email`、`role`、`status`、`must_change_password` 和密码过期信息。侧栏应优先展示员工姓名与员工号，不再把邮箱作为主身份。
+
+当前后端只返回 Access Token，尚无 Refresh Token。前端遇到 401 时退出登录，不实现伪刷新机制。若采用 `localStorage` 存 Token，需明确其 XSS 风险；生产方案应优先由后端增加 HttpOnly、Secure、SameSite Cookie 或短期 Access Token + Refresh Token 机制。前端路由保护还必须检查 `must_change_password`：该值为 true 时只允许访问改密页和退出登录。
 
 ### 5.2 会话与消息
 
@@ -422,6 +428,8 @@ Stage 3 第一版仅对有可靠结构来源的数据生成可点击法条卡片
 - Markdown 禁止不受控 HTML、脚本协议和内联事件；
 - API Base URL 由环境变量提供，不在源码硬编码生产地址；
 - 401 统一清理登录态，403/404 不推断资源归属；
+- 员工号不得写入 URL 或分析埋点；账号锁定、临时密码过期和强制改密均使用后端错误码驱动；
+- 前端不提供公开注册入口，不保存或展示管理员生成的一次性初始密码；
 - 登出时清理 Query Cache、草稿和 Token；
 - 案件删除、会话删除需要确认；
 - UI 固定展示“内容由 AI 生成，请结合有效法律文本和专业意见复核”的适度提示；
@@ -456,6 +464,7 @@ Stage 3 第一版仅对有可靠结构来源的数据生成可点击法条卡片
 - 未知事件忽略、非法 JSON、`run.failed`；
 - Stream Reducer 的合法与非法状态迁移；
 - REST 错误归一化；
+- 员工号 6～10 位纯数字校验、强密码校验和 `requires_password_change` 路由分支；
 - API snake_case/camelCase 转换；
 - Mention 查询解析和单案件替换；
 - Markdown 链接协议与 HTML 注入防护。
@@ -472,16 +481,18 @@ Stage 3 第一版仅对有可靠结构来源的数据生成可点击法条卡片
 
 ### 13.3 端到端测试
 
-1. 注册、登录、刷新后恢复身份；
-2. 创建案件并通过 `@` 绑定到新会话；
-3. 发送消息，依次看到 Tool 提示和流式回答；
-4. 生成中上滑，验证页面不强制回底；
-5. 停止生成并保留当前文本；
-6. 模拟网络中断，展示可重试状态；
-7. 刷新页面后从历史恢复 User/Assistant，且不显示 Tool 消息；
-8. 切换两个案件，验证请求携带正确 `active_case_id`；
-9. 删除案件后 Mention 列表不再出现；
-10. Access Token 失效后返回登录页且不泄露旧用户缓存。
+1. 员工号和临时密码登录后必须进入首次改密页；
+2. 改密成功后进入工作台，刷新可以恢复员工身份；
+3. 普通员工不能从前端自助注册账号；
+4. 创建案件并通过 `@` 绑定到新会话；
+5. 发送消息，依次看到 Tool 提示和流式回答；
+6. 生成中上滑，验证页面不强制回底；
+7. 停止生成并保留当前文本；
+8. 模拟网络中断，展示可重试状态；
+9. 刷新页面后从历史恢复 User/Assistant，且不显示 Tool 消息；
+10. 切换两个案件，验证请求携带正确 `active_case_id`；
+11. 删除案件后 Mention 列表不再出现；
+12. Access Token 失效后返回登录页且不泄露旧用户缓存。
 
 Playwright 的 SSE Mock 必须真实模拟随机分片和延时，不得只返回完整事件字符串。
 
@@ -489,12 +500,12 @@ Playwright 的 SSE Mock 必须真实模拟随机分片和延时，不得只返�
 
 ### P0：前端工程与契约层
 
-- 创建 `web/` Next.js TypeScript 工程；
+- 创建 `frontend/` Next.js TypeScript 工程；
 - 配置 Tailwind、shadcn/ui、Lint、Typecheck 和测试；
 - 定义 API Contract、统一 Client 和错误模型；
-- 完成登录、注册和路由保护。
+- 完成员工号登录、首次强制改密和路由保护，不提供自助注册。
 
-**验收**：可登录 FastAPI，401 能正确清理状态并跳转。
+**验收**：可使用员工号登录 FastAPI；临时密码账号只能进入改密页；401 能正确清理状态并跳转。
 
 ### P1：会话与历史消息
 
@@ -540,7 +551,7 @@ Playwright 的 SSE Mock 必须真实模拟随机分片和延时，不得只返�
 2. **取消语义**：当前依赖 HTTP 断开触发服务端取消，没有显式 cancel endpoint。需要集成测试确认 ASGI/反向代理能及时传播断开。
 3. **幂等重试**：当前 `/api/chat` 未接收 `Idempotency-Key`。在后端支持前，前端不得自动重试状态不明的聊天 POST。
 4. **引用数据**：当前历史 Assistant `metadata` 主要保存 usage，尚无稳定 citations。可点击法条原文卡片应等待引用契约落地。
-5. **Token 生命周期**：当前没有 Refresh Token/HttpOnly Cookie，生产鉴权方案需另行加固。
+5. **Token 生命周期**：当前没有 Refresh Token/HttpOnly Cookie，生产鉴权方案需另行加固；同时确认完成首次改密后原 JWT 是否继续使用，前端按当前实现保留该 Token 并重新请求 `/api/auth/me`。
 6. **失败消息正文**：服务端流失败会将数据库 Assistant 标为 failed，但部分流式正文未落盘；页面刷新后可能无法恢复已生成的部分文本，UI 文案不能承诺其已永久保存。
 7. **会话并发**：后端尚未声明同会话并发生成策略。前端先限制单会话单流，后端仍应增加并发保护。
 8. **事件兼容**：`checkpoint.pending` 是 FastAPI 额外事件，不在 Node.js 事件联合类型内。前端需容忍该事件，后端文档需将其正式纳入外部契约。
@@ -549,8 +560,9 @@ Playwright 的 SSE Mock 必须真实模拟随机分片和延时，不得只返�
 
 满足以下全部条件后，Stage 3 主体完成：
 
-- `web/` 可通过环境变量独立启动并连接 `mid-layer`；
+- `frontend/` 可通过环境变量独立启动并连接 `mid-layer`；
 - 鉴权、会话、消息和案件主流程可用；
+- 员工号登录、首次强制改密、账号锁定错误和无自助注册入口符合 Python 契约；
 - POST SSE 在随机分片、中文内容和 Tool 事件下稳定解析；
 - 流式文本只引发局部、受控频率的渲染；
 - 用户上滑时不会被强制拉回底部；
@@ -567,13 +579,13 @@ Playwright 的 SSE Mock 必须真实模拟随机分片和延时，不得只返�
 
 第一批提交建议严格限制为可验证的纵向切片：
 
-1. 创建 `web/` Next.js + TypeScript 工程；
+1. 创建 `frontend/` Next.js + TypeScript 工程；
 2. 建立 `contracts.ts`、统一 API Client 和 `ApiError`；
-3. 完成登录页及 `/api/auth/me` 登录态恢复；
+3. 完成员工号登录、首次改密页及 `/api/auth/me` 登录态恢复；
 4. 完成会话列表、新建会话和历史消息展示；
 5. 编写独立 SSE Parser，并用随机 Chunk 单元测试覆盖；
 6. 实现最小 `useChatStream`：处理 `run.started`、`text.delta`、`run.completed`、`run.failed`；
 7. 实现 `StreamingMessage` 局部缓冲和 AbortController；
-8. 与 FastAPI 联调一条“登录 → 新建会话 → 流式提问 → 刷新恢复”的完整链路。
+8. 与 FastAPI 联调一条“员工号登录 → 首次改密（如需要）→ 新建会话 → 流式提问 → 刷新恢复”的完整链路。
 
 这一批完成后，再接入 Tool 状态、智能滚动、案件 Mention 和完整 Markdown，可以显著降低 UI 功能堆叠后才发现协议不兼容的返工风险。

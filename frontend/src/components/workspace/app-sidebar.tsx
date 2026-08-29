@@ -38,7 +38,7 @@ export function AppSidebar({ activeSessionId, section = "chat" }: { activeSessio
         <div className="sidebar-bottom">
           <Link className={`sidebar-link ${section === "cases" ? "sidebar-link-active" : ""}`} href="/cases"><BriefcaseBusiness size={17} />案件库</Link>
           <div className="sidebar-link sidebar-link-muted"><BookOpenText size={17} />法律资源 <small>由 Agent 调用</small></div>
-          <div className="account-row"><div className="account-avatar">{me.data?.email.slice(0, 1).toUpperCase() ?? "U"}</div><div><strong>{me.data?.email ?? "当前用户"}</strong><small>企业账户</small></div><button onClick={logout} aria-label="退出登录"><LogOut size={16} /></button></div>
+          <div className="account-row"><div className="account-avatar">{me.data?.name.slice(0, 1) ?? "员"}</div><div><strong>{me.data?.name ?? "当前员工"}</strong><small>{me.data ? `${me.data.employee_no} · ${me.data.role === "admin" ? "管理员" : "员工"}` : "企业账户"}</small></div><button onClick={logout} aria-label="退出登录"><LogOut size={16} /></button></div>
         </div>
       </aside>
     </>
