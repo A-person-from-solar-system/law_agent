@@ -1,0 +1,30 @@
+# Dependencies and build output
+**/node_modules/
+**/.next/
+**/dist/
+**/build/
+**/coverage/
+
+# Local environment and credentials
+**/.env
+**/.env.*
+!**/.env.example
+
+# Python caches and local databases
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+*.py[cod]
+*.db
+*.sqlite*
+
+# Editors and temporary files
+.DS_Store
+Thumbs.db
+*.log
+*.bkp
+*.tsbuildinfo
+
+# Existing independently versioned services
+/agent-engine/
+/mid-layer/
