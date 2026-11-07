@@ -10,11 +10,11 @@
 
 ### 登录界面：
 
-![image-20261107234811275](C:/Users/User/AppData/Roaming/Typora/typora-user-images/image-20261107234811275.png)
+![image-20261107234811275](images/image-20261107234811275.png)
 
 ### 系统界面
 
-![image-20261107235112762](C:/Users/User/AppData/Roaming/Typora/typora-user-images/image-20261107235112762.png)
+![image-20261107235112762](images/image-20261107235052999.png)
 
 ## Windows 本机一键启动（不需要 Docker）
 
