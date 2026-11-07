@@ -6,6 +6,16 @@
 - `mid-layer`：FastAPI 鉴权、会话、案件、PostgreSQL 持久化和 SSE 网关；
 - `agent-engine`：无状态 Node.js Agent，并通过内部 API 回调 Python 法律知识库。
 
+## 系统演示图
+
+### 登录界面：
+
+![image-20261107234811275](C:/Users/User/AppData/Roaming/Typora/typora-user-images/image-20261107234811275.png)
+
+### 系统界面
+
+![image-20261107235112762](C:/Users/User/AppData/Roaming/Typora/typora-user-images/image-20261107235112762.png)
+
 ## Windows 本机一键启动（不需要 Docker）
 
 首次配置：把 `scripts/local.env.example` 复制为**项目根目录** `.env.local`，填写当前 PostgreSQL 连接；如后端不使用项目 `.venv`，设置 `LOCAL_PYTHON` 为正常运行中台的 Python 完整路径。
