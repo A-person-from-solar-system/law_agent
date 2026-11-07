@@ -1,0 +1,137 @@
+{
+  "run_id": "20261004T073406Z-d0df91f7",
+  "generated_at": "2026-10-04T07:35:53.358114+00:00",
+  "task_count": 1,
+  "run_summary": {
+    "completed": 1,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "source": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "disposal": {
+      "score": 0.666667,
+      "scored_tasks": 1
+    },
+    "multi_case": {
+      "accuracy": null,
+      "confusion_rate": null,
+      "scored_tasks": 0
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "eval_v1_case_0001",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 7,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 7,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：王某某",
+              "时间：2017年2月1日18时许",
+              "地点：幸福大道延长线路口",
+              "行为：醉酒驾驶机动车",
+              "关键数值：酒精含量=251.45mg/100ml",
+              "责任：承担事故全部责任",
+              "案件后果：车辆受损"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent 准确识别了全部7个人工事实点，表述与案件原文一致；未发现错误事实或遗漏事实点。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_001673_f31c616c::chunk_0",
+            "cail_002820_8a1cab8e::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001673_f31c616c::chunk_0",
+            "cail_002820_8a1cab8e::chunk_0"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 4,
+          "applicable_items": 6,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "责任",
+                "result": "pass",
+                "reason": "回答记载交警认定王某某负事故全部责任，并在情节梳理中列入“造成事故且负全责”，对事故责任有考虑。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "回答明确列明车辆开入坑内、车辆受损的交通事故及全部责任，对行为后果有考虑。"
+              },
+              {
+                "name": "主观状态",
+                "result": "fail",
+                "reason": "回答未明确分析醉酒驾驶的主观故意、对使用伪造驾驶证的明知等行为时主观状态，仅提及庭审无异议需核实，不足以体现对主观状态的审查。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "回答注意到庭审无异议可能对应坦白、如实供述，并建议补充到案经过、自首、赔偿谅解等，体现对从宽情节的考量。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "回答列出酒精含量251.45mg/100ml、造成事故且负全责、使用伪造驾驶证等从重事实，虽称未检索到具体从重依据，但已识别相关情节。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "参考处置要求认定危险驾驶罪并给出拘役4个月、罚金0元的量刑结论；回答未明确认定罪名，也未形成本案处置或量刑结论，仅列类案并要求重新检索，结论不完整、不一致。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": ""
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "run_id": "rubric-v2-smoke",
+  "generated_at": "2026-10-04T09:12:05.807184+00:00",
+  "task_count": 1,
+  "run_summary": {
+    "completed": 1,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "source": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": null,
+      "confusion_rate": null,
+      "scored_tasks": 0
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "eval_v1_case_0001",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_002488_2673749d::chunk_0",
+            "cail_002967_fe217dc2::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_002488_2673749d::chunk_0",
+            "cail_002967_fe217dc2::chunk_0"
+          ]
+        },
+        "disposal": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "datasetName": "多轮与多案件切换评测集",
+  "datasetType": "case_switching",
+  "version": "1.0.0",
+  "description": "评估会话中切换 activeCase 后，Agent 是否使用当前案件事实，并避免把其他案件的人员、金额、日期和检索依据带入当前回答。每个 scenario 包含多轮输入，每轮分别标注预期案件归属。",
+  "scoring": {
+    "primary": ["activeCaseAccuracy", "requiredFactRecall", "crossCaseLeakageRate", "sourceScopeAccuracy"],
+    "rule": "activeCaseId 是当前轮案件归属的权威字段；history 和 checkpoint 中其他案件内容不得自动成为当前案件事实。"
+  },
+  "scenarios": [
+    {
+      "id": "case_change_001",
+      "title": "借款案切换到劳动争议案",
+      "cases": {
+        "case-a": { "caseName": "张某借款案", "facts": { "当事人": "张某", "金额": "5万元", "日期": "2024-01-10" } },
+        "case-b": { "caseName": "李某劳动争议案", "facts": { "当事人": "李某", "月工资": "8000元", "解除日期": "2025-03-01" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "这个案件的借款金额和日期是什么？", "expected": { "requiredFacts": ["5万元", "2024-01-10"], "forbiddenFacts": ["8000元", "2025-03-01"] } },
+        { "activeCaseId": "case-b", "userInput": "现在这个案件的当事人和工资是多少？", "expected": { "requiredFacts": ["李某", "8000元"], "forbiddenFacts": ["张某", "5万元"] } },
+        { "activeCaseId": "case-b", "userInput": "刚才说的解除发生在什么时候？", "expected": { "requiredFacts": ["2025-03-01"], "forbiddenFacts": ["2024-01-10"] } }
+      ]
+    },
+    {
+      "id": "case_change_002",
+      "title": "同案由不同金额",
+      "cases": {
+        "case-a": { "caseName": "王某借款案", "facts": { "借款人": "王某", "金额": "10万元", "已还": "2万元" } },
+        "case-b": { "caseName": "赵某借款案", "facts": { "借款人": "赵某", "金额": "30万元", "已还": "10万元" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "还剩多少本金未还？", "expected": { "requiredFacts": ["王某", "8万元"], "forbiddenFacts": ["赵某", "20万元"] } },
+        { "activeCaseId": "case-b", "userInput": "切换后这个案件还剩多少？", "expected": { "requiredFacts": ["赵某", "20万元"], "forbiddenFacts": ["王某", "8万元"] } }
+      ]
+    },
+    {
+      "id": "case_change_003",
+      "title": "相同当事人名称但不同案件",
+      "cases": {
+        "case-a": { "caseName": "甲公司买卖合同案", "facts": { "原告": "甲公司", "被告": "乙公司", "标的": "设备", "金额": "50万元" } },
+        "case-b": { "caseName": "甲公司租赁合同案", "facts": { "原告": "甲公司", "被告": "丙公司", "标的": "厂房", "金额": "12万元" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "概括双方和合同标的。", "expected": { "requiredFacts": ["甲公司", "乙公司", "设备"], "forbiddenFacts": ["丙公司", "厂房"] } },
+        { "activeCaseId": "case-b", "userInput": "这个案件的被告和标的呢？", "expected": { "requiredFacts": ["丙公司", "厂房"], "forbiddenFacts": ["乙公司", "设备"] } }
+      ]
+    },
+    {
+      "id": "case_change_004",
+      "title": "交通事故责任切换",
+      "cases": {
+        "case-a": { "caseName": "事故案A", "facts": { "驾驶人": "陈某", "责任": "全部责任", "后果": "一人死亡" } },
+        "case-b": { "caseName": "事故案B", "facts": { "驾驶人": "周某", "责任": "同等责任", "后果": "一人轻伤" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "分析事故责任和后果。", "expected": { "requiredFacts": ["陈某", "全部责任", "一人死亡"], "forbiddenFacts": ["周某", "同等责任", "一人轻伤"] } },
+        { "activeCaseId": "case-b", "userInput": "再分析当前案件。", "expected": { "requiredFacts": ["周某", "同等责任", "一人轻伤"], "forbiddenFacts": ["陈某", "全部责任", "一人死亡"] } }
+      ]
+    },
+    {
+      "id": "case_change_005",
+      "title": "案件与通用问题交替",
+      "cases": {
+        "case-a": { "caseName": "孙某租赁案", "facts": { "承租人": "孙某", "月租金": "4000元" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "这个案件的承租人和租金是多少？", "expected": { "requiredFacts": ["孙某", "4000元"], "forbiddenFacts": [] } },
+        { "activeCaseId": null, "userInput": "一般来说，什么是违约金？", "expected": { "requiredFacts": [], "forbiddenFacts": ["孙某", "4000元"], "expectedScope": "general" } },
+        { "activeCaseId": "case-a", "userInput": "回到案件，这里的月租金是多少？", "expected": { "requiredFacts": ["4000元"], "forbiddenFacts": [] } }
+      ]
+    },
+    {
+      "id": "case_change_006",
+      "title": "旧 checkpoint 不得覆盖当前案件",
+      "checkpoint": "旧会话曾讨论案件A：刘某借款20万元，2023年到期。",
+      "cases": {
+        "case-a": { "caseName": "刘某借款案", "facts": { "借款人": "刘某", "金额": "20万元", "到期时间": "2023年" } },
+        "case-b": { "caseName": "吴某借款案", "facts": { "借款人": "吴某", "金额": "6万元", "到期时间": "2025年" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-b", "userInput": "当前案件是谁借了多少钱，何时到期？", "expected": { "requiredFacts": ["吴某", "6万元", "2025年"], "forbiddenFacts": ["刘某", "20万元", "2023年"] } }
+      ]
+    },
+    {
+      "id": "case_change_007",
+      "title": "案件切换后的 RAG 查询范围",
+      "cases": {
+        "case-a": { "caseName": "工伤案A", "facts": { "争议": "上下班途中交通事故", "责任": "非本人主要责任" } },
+        "case-b": { "caseName": "劳动案B", "facts": { "争议": "未签书面劳动合同", "入职时长": "十个月" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "检索当前争议的认定依据。", "expected": { "requiredQueryConcepts": ["上下班途中", "交通事故", "工伤认定"], "forbiddenQueryConcepts": ["未签书面劳动合同"] } },
+        { "activeCaseId": "case-b", "userInput": "现在检索这个案件的法律依据。", "expected": { "requiredQueryConcepts": ["未签书面劳动合同", "双倍工资"], "forbiddenQueryConcepts": ["上下班途中", "交通事故"] } }
+      ]
+    },
+    {
+      "id": "case_change_008",
+      "title": "前案 sourceId 不得自动用于后案",
+      "cases": {
+        "case-a": { "caseName": "保证合同案", "facts": { "争议": "保证期间" } },
+        "case-b": { "caseName": "租赁合同案", "facts": { "争议": "提前退租" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "根据检索结果说明保证期间。", "mockSources": ["statute-guarantee-01"], "expected": { "allowedSourceIds": ["statute-guarantee-01"], "forbiddenSourceIds": [] } },
+        { "activeCaseId": "case-b", "userInput": "分析当前案件，但本轮还没有检索。", "mockSources": [], "expected": { "allowedSourceIds": [], "forbiddenSourceIds": ["statute-guarantee-01"] } }
+      ]
+    },
+    {
+      "id": "case_change_009",
+      "title": "返回之前案件",
+      "cases": {
+        "case-a": { "caseName": "案件A", "facts": { "关键日期": "2024-02-01", "金额": "9万元" } },
+        "case-b": { "caseName": "案件B", "facts": { "关键日期": "2025-06-15", "金额": "15万元" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "记住当前案件的日期。", "expected": { "requiredFacts": ["2024-02-01"], "forbiddenFacts": ["2025-06-15"] } },
+        { "activeCaseId": "case-b", "userInput": "切换后金额是多少？", "expected": { "requiredFacts": ["15万元"], "forbiddenFacts": ["9万元"] } },
+        { "activeCaseId": "case-a", "userInput": "回到这个案件，日期和金额分别是什么？", "expected": { "requiredFacts": ["2024-02-01", "9万元"], "forbiddenFacts": ["2025-06-15", "15万元"] } }
+      ]
+    },
+    {
+      "id": "case_change_010",
+      "title": "用户文本提及另一案件但未切换",
+      "cases": {
+        "case-a": { "caseName": "案件A", "facts": { "当事人": "郭某", "金额": "7万元" } },
+        "case-b": { "caseName": "案件B", "facts": { "当事人": "何某", "金额": "18万元" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "虽然案件B金额是18万元，但我没有切换案件；当前绑定案件的信息是什么？", "expected": { "requiredFacts": ["郭某", "7万元"], "forbiddenFacts": ["何某", "18万元"], "expectedActiveCaseId": "case-a" } }
+      ]
+    },
+    {
+      "id": "case_change_011",
+      "title": "用户明确进行跨案比较",
+      "cases": {
+        "case-a": { "caseName": "案件A", "facts": { "责任": "全部责任", "是否赔偿": "是" } },
+        "case-b": { "caseName": "案件B", "facts": { "责任": "主要责任", "是否赔偿": "否" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-b", "userInput": "请明确比较案件A和当前案件B的责任及赔偿情况。", "expected": { "requiredFacts": ["案件A：全部责任、已赔偿", "案件B：主要责任、未赔偿"], "forbiddenFacts": [], "expectedScope": "cross_case_comparison" } }
+      ]
+    },
+    {
+      "id": "case_change_012",
+      "title": "未明确要求时不得自动跨案比较",
+      "cases": {
+        "case-a": { "caseName": "案件A", "facts": { "责任": "全部责任", "是否赔偿": "是" } },
+        "case-b": { "caseName": "案件B", "facts": { "责任": "主要责任", "是否赔偿": "否" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-b", "userInput": "当前案件的责任和赔偿情况是什么？", "expected": { "requiredFacts": ["主要责任", "未赔偿"], "forbiddenFacts": ["全部责任", "已赔偿"], "expectedScope": "active_case_only" } }
+      ]
+    },
+    {
+      "id": "case_change_013",
+      "title": "案件名称相近",
+      "cases": {
+        "case-a": { "caseName": "华东公司合同案一", "facts": { "合同类型": "采购合同", "标的": "服务器" } },
+        "case-b": { "caseName": "华东公司合同案二", "facts": { "合同类型": "服务合同", "标的": "运维服务" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-b", "userInput": "当前案件是什么合同，标的是什么？", "expected": { "requiredFacts": ["服务合同", "运维服务"], "forbiddenFacts": ["采购合同", "服务器"] } }
+      ]
+    },
+    {
+      "id": "case_change_014",
+      "title": "无绑定案件时不得沿用前案",
+      "cases": {
+        "case-a": { "caseName": "钱某侵权案", "facts": { "当事人": "钱某", "损失": "3万元" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "这个案件的损失是多少？", "expected": { "requiredFacts": ["3万元"], "forbiddenFacts": [] } },
+        { "activeCaseId": null, "userInput": "现在我问一个无关的通用问题：什么是过错责任？", "expected": { "requiredFacts": [], "forbiddenFacts": ["钱某", "3万元"], "expectedScope": "general" } }
+      ]
+    },
+    {
+      "id": "case_change_015",
+      "title": "历史消息与当前案件事实冲突",
+      "history": [
+        { "role": "user", "content": "我之前口头说案件金额可能是40万元。" }
+      ],
+      "cases": {
+        "case-a": { "caseName": "合同纠纷案", "facts": { "已确认金额": "35万元", "事实状态": "案件库已确认" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "当前已确认的金额是多少？", "expected": { "requiredFacts": ["35万元", "案件库已确认"], "forbiddenFacts": ["确认金额为40万元"] } }
+      ]
+    },
+    {
+      "id": "case_change_016",
+      "title": "切换后追问省略主语",
+      "cases": {
+        "case-a": { "caseName": "案A", "facts": { "原告": "许某", "被告": "A公司" } },
+        "case-b": { "caseName": "案B", "facts": { "原告": "郑某", "被告": "B公司" } }
+      },
+      "turns": [
+        { "activeCaseId": "case-a", "userInput": "原被告是谁？", "expected": { "requiredFacts": ["许某", "A公司"], "forbiddenFacts": ["郑某", "B公司"] } },
+        { "activeCaseId": "case-b", "userInput": "切换案件。", "expected": { "requiredFacts": [], "forbiddenFacts": [] } },
+        { "activeCaseId": "case-b", "userInput": "那这里呢？", "expected": { "requiredFacts": ["郑某", "B公司"], "forbiddenFacts": ["许某", "A公司"] } }
+      ]
+    }
+  ]
+}

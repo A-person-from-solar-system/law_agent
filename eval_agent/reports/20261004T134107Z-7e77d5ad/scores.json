@@ -1,0 +1,140 @@
+{
+  "run_id": "20261004T134107Z-7e77d5ad",
+  "generated_at": "2026-10-04T13:41:21.641338+00:00",
+  "task_count": 1,
+  "run_summary": {
+    "completed": 1,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "source": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "confusion_rate": null,
+      "non_target_leakage_rate": null,
+      "counts": {
+        "true_positive": 0,
+        "expected": 0,
+        "output": 0,
+        "misattributed": 0,
+        "non_target": 0
+      },
+      "by_category": {},
+      "scored_tasks": 0
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "eval_v1_case_0001",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 7,
+          "false_positive": 0,
+          "false_negative": 0,
+          "expected_fact_count": 7,
+          "output_fact_count": 7,
+          "correct_facts": [
+            {
+              "field": "person",
+              "expected": "王某某",
+              "actual": "王某某"
+            },
+            {
+              "field": "time",
+              "expected": "2017年2月1日18时许",
+              "actual": "2017年2月1日18时许"
+            },
+            {
+              "field": "location",
+              "expected": "幸福大道延长线路口",
+              "actual": "绥阳县幸福大道延长线路口"
+            },
+            {
+              "field": "behavior",
+              "expected": "醉酒驾驶机动车",
+              "actual": "醉酒后使用伪造驾驶证驾驶机动车发生交通事故"
+            },
+            {
+              "field": "numbers",
+              "expected": "酒精含量=251.45mg/100ml",
+              "actual": "血液酒精含量251.45mg/100ml"
+            },
+            {
+              "field": "responsibility",
+              "expected": "承担事故全部责任",
+              "actual": "王某某负本次事故全部责任"
+            },
+            {
+              "field": "consequence",
+              "expected": "车辆受损",
+              "actual": "造成车辆受损的交通事故"
+            }
+          ],
+          "missing_facts": [],
+          "extra_facts": []
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_001501_2cf91810",
+            "cail_002089_d3cf4171::chunk_0",
+            "cail_002340_98060dea::chunk_0",
+            "cail_002820_8a1cab8e::chunk_0",
+            "cail_002967_fe217dc2::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001501_2cf91810",
+            "cail_002089_d3cf4171::chunk_0",
+            "cail_002340_98060dea::chunk_0",
+            "cail_002820_8a1cab8e::chunk_0",
+            "cail_002967_fe217dc2::chunk_0"
+          ]
+        },
+        "disposal": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    }
+  ]
+}

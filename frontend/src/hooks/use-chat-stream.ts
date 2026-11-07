@@ -7,7 +7,9 @@ import { ApiError } from "@/lib/api/client";
 
 export type StreamStatus = "idle" | "connecting" | "generating" | "completed" | "failed" | "cancelled";
 
-export function useChatStream(onSettled: () => void) {
+type StreamOutcome = "completed" | "failed" | "cancelled" | null;
+
+export function useChatStream(onSettled: () => void | Promise<void>) {
   const [status, setStatus] = useState<StreamStatus>("idle");
   const [text, setText] = useState("");
   const [tools, setTools] = useState<ToolActivity[]>([]);
@@ -15,6 +17,7 @@ export function useChatStream(onSettled: () => void) {
   const controllerRef = useRef<AbortController | null>(null);
   const pendingRef = useRef("");
   const frameRef = useRef<number | null>(null);
+  const outcomeRef = useRef<StreamOutcome>(null);
 
   const flush = useCallback(() => {
     if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
@@ -45,8 +48,18 @@ export function useChatStream(onSettled: () => void) {
         setTools((items) => items.map((item) => item.id === id ? { ...item, status: event.data.isError ? "failed" : "completed" } : item));
         break;
       }
-      case "run.completed": flush(); setStatus("completed"); break;
-      case "run.failed": flush(); setError(String(event.data.message ?? "生成失败，请稍后重试")); setStatus("failed"); break;
+      case "run.completed":
+        flush();
+        outcomeRef.current = "completed";
+        setStatus("completed");
+        break;
+      case "run.failed":
+        flush();
+        outcomeRef.current = "failed";
+        setTools((items) => items.map((item) => item.status === "running" ? { ...item, status: "failed" } : item));
+        setError(String(event.data.message ?? "生成失败，请稍后重试"));
+        setStatus("failed");
+        break;
       default: break;
     }
   }, [flush, scheduleFlush]);
@@ -56,23 +69,41 @@ export function useChatStream(onSettled: () => void) {
     const controller = new AbortController();
     controllerRef.current = controller;
     pendingRef.current = "";
+    outcomeRef.current = null;
     setText(""); setTools([]); setError(""); setStatus("connecting");
     try {
       await streamChat(input, controller.signal, handleEvent);
     } catch (cause) {
       flush();
-      if (controller.signal.aborted) setStatus("cancelled");
-      else {
+      if (controller.signal.aborted) {
+        outcomeRef.current = "cancelled";
+        setTools((items) => items.map((item) => item.status === "running" ? { ...item, status: "failed" } : item));
+        setStatus("cancelled");
+      } else {
+        outcomeRef.current = "failed";
+        setTools((items) => items.map((item) => item.status === "running" ? { ...item, status: "failed" } : item));
         setStatus("failed");
         setError(cause instanceof ApiError ? cause.message : cause instanceof Error && cause.message === "STREAM_INTERRUPTED" ? "网络连接中断，当前进度已保留" : "暂时无法完成生成，请稍后重试");
       }
     } finally {
       controllerRef.current = null;
-      onSettled();
+      const outcome = outcomeRef.current as StreamOutcome;
+      try {
+        await onSettled();
+      } finally {
+        if (outcome === "completed") {
+          setStatus("idle");
+          setText("");
+          setTools([]);
+          setError("");
+          pendingRef.current = "";
+        }
+        outcomeRef.current = null;
+      }
     }
   }, [flush, handleEvent, onSettled]);
 
-  const stop = useCallback(() => { controllerRef.current?.abort(); flush(); setStatus("cancelled"); }, [flush]);
+  const stop = useCallback(() => { controllerRef.current?.abort(); flush(); setTools((items) => items.map((item) => item.status === "running" ? { ...item, status: "failed" } : item)); setStatus("cancelled"); }, [flush]);
   const reset = useCallback(() => { setStatus("idle"); setText(""); setTools([]); setError(""); pendingRef.current = ""; }, []);
 
   useEffect(() => () => { controllerRef.current?.abort(); if (frameRef.current !== null) cancelAnimationFrame(frameRef.current); }, []);

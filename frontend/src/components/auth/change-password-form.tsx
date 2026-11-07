@@ -39,13 +39,13 @@ export function ChangePasswordForm() {
   return (
     <main className="auth-page">
       <section className="auth-aside password-aside">
-        <div className="auth-brand"><span className="brand-mark"><Scale size={22} /></span><div><strong>衡法智策</strong><small>政企法律智能助手</small></div></div>
+        <div className="auth-brand"><span className="brand-mark"><Scale size={22} /></span><div><strong>法律知识问答智能体软件V1.0</strong><small>法律知识智能问答</small></div></div>
         <div className="auth-copy"><p className="eyebrow">ACCOUNT SECURITY</p><h1>首次登录<br />请设置新密码</h1><p>初始密码仅用于首次身份验证。更新密码后，才能进入案件与法律咨询工作台。</p></div>
         <div className="auth-quote"><ShieldCheck size={17} /> 密码不会以明文形式保存</div>
       </section>
       <section className="auth-panel">
         <form className="auth-card" onSubmit={submit}>
-          <div className="mobile-auth-brand"><Scale size={22} /><strong>衡法智策</strong></div>
+          <div className="mobile-auth-brand"><Scale size={22} /><strong>法律知识问答智能体软件V1.0</strong></div>
           <p className="eyebrow">SECURE YOUR ACCOUNT</p><h2>设置您的新密码</h2><p className="auth-hint">完成后将自动进入法律工作台</p>
           <label className="field"><span>当前临时密码</span><div><KeyRound size={17} /><input value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} type="password" autoComplete="current-password" placeholder="输入管理员提供的临时密码" required /></div></label>
           <label className="field"><span>新密码</span><div><LockKeyhole size={17} /><input value={newPassword} onChange={(event) => setNewPassword(event.target.value)} type="password" autoComplete="new-password" placeholder="至少 12 位，包含字母和数字" required /></div></label>

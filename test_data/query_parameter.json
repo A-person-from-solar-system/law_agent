@@ -1,0 +1,180 @@
+{
+  "datasetName": "法律知识库查询参数生成评测集",
+  "datasetType": "query_generation",
+  "version": "1.0.0",
+  "description": "评估 Agent 对不同表达方式生成 search_legal_kb 参数的稳定性。requiredConcepts 用于判断 query 是否保留核心语义，不要求生成文本与标准答案完全一致。",
+  "scoring": {
+    "primary": ["requiredConceptRecall", "forbiddenConceptRate", "sourceTypeAccuracy"],
+    "notes": "jurisdiction 和 effectiveAt 当前不是 RAG 硬过滤条件，相关要求必须进入 query；不强制模型填写这两个可选字段。"
+  },
+  "cases": [
+    {
+      "id": "query_001",
+      "baseScenarioId": "traffic_sentencing",
+      "variant": "正式表达",
+      "userInput": "交通肇事致一人死亡且负事故全部责任，一般如何量刑？",
+      "expected": { "requiredConcepts": ["交通肇事", "一人死亡", "全部责任", "量刑"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": ["故意杀人"] }
+    },
+    {
+      "id": "query_002",
+      "baseScenarioId": "traffic_sentencing",
+      "variant": "口语表达",
+      "userInput": "开货车撞死一个人，交警认定司机全责，大概会判多久？",
+      "expected": { "requiredConcepts": ["交通肇事", "死亡", "全部责任", "量刑"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": ["故意杀人"] }
+    },
+    {
+      "id": "query_003",
+      "baseScenarioId": "traffic_sentencing",
+      "variant": "简称省略",
+      "userInput": "交通肇事一死全责怎么判？",
+      "expected": { "requiredConcepts": ["交通肇事", "一人死亡", "全部责任", "量刑"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_004",
+      "baseScenarioId": "traffic_sentencing",
+      "variant": "带从宽情节",
+      "userInput": "司机全责致一人死亡，但自首、赔偿并取得谅解，查询量刑依据和类案。",
+      "expected": { "requiredConcepts": ["交通肇事", "死亡", "全部责任", "自首", "赔偿", "谅解", "量刑"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_005",
+      "baseScenarioId": "labor_double_wage",
+      "variant": "正式表达",
+      "userInput": "用人单位未与劳动者订立书面劳动合同，双倍工资如何计算？",
+      "expected": { "requiredConcepts": ["未签订书面劳动合同", "双倍工资", "计算期间"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": ["经济补偿金"] }
+    },
+    {
+      "id": "query_006",
+      "baseScenarioId": "labor_double_wage",
+      "variant": "口语表达",
+      "userInput": "上班一直没签合同，能不能让公司多赔一倍工资？",
+      "expected": { "requiredConcepts": ["未签订书面劳动合同", "双倍工资"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": ["工伤赔偿"] }
+    },
+    {
+      "id": "query_007",
+      "baseScenarioId": "labor_double_wage",
+      "variant": "错别字",
+      "userInput": "公司没签劳功合同，双倍工姿能要几个月？",
+      "expected": { "requiredConcepts": ["未签订书面劳动合同", "双倍工资", "期间"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_008",
+      "baseScenarioId": "labor_double_wage",
+      "variant": "带时间条件",
+      "userInput": "入职十个月没有签书面劳动合同，现在主张双倍工资是否超过时效？",
+      "expected": { "requiredConcepts": ["未签订书面劳动合同", "双倍工资", "十个月", "仲裁时效"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_009",
+      "baseScenarioId": "private_lending_rate",
+      "variant": "正式表达",
+      "userInput": "民间借贷利率司法保护上限如何确定？",
+      "expected": { "requiredConcepts": ["民间借贷", "利率", "司法保护上限"], "expectedSourceTypes": ["statute"], "forbiddenConcepts": ["银行贷款审批"] }
+    },
+    {
+      "id": "query_010",
+      "baseScenarioId": "private_lending_rate",
+      "variant": "口语表达",
+      "userInput": "私人借钱约定的利息最高能支持多少？",
+      "expected": { "requiredConcepts": ["民间借贷", "利息", "司法保护上限"], "expectedSourceTypes": ["statute"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_011",
+      "baseScenarioId": "private_lending_rate",
+      "variant": "简称表达",
+      "userInput": "民借利率上限现在怎么算？",
+      "expected": { "requiredConcepts": ["民间借贷", "利率上限"], "expectedSourceTypes": ["statute"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_012",
+      "baseScenarioId": "private_lending_rate",
+      "variant": "带时间核验",
+      "userInput": "查询2024年签订的民间借贷合同适用的利率保护标准。",
+      "expected": { "requiredConcepts": ["2024年", "民间借贷", "利率保护标准"], "expectedSourceTypes": ["statute"], "forbiddenConcepts": [], "queryMustCarryConstraints": ["2024年"] }
+    },
+    {
+      "id": "query_013",
+      "baseScenarioId": "lease_termination",
+      "variant": "正式表达",
+      "userInput": "承租人提前退租是否应承担违约责任？",
+      "expected": { "requiredConcepts": ["房屋租赁", "承租人", "提前退租", "违约责任"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": ["买卖合同"] }
+    },
+    {
+      "id": "query_014",
+      "baseScenarioId": "lease_termination",
+      "variant": "口语表达",
+      "userInput": "房子还没租到期我就搬走，要赔房东多少钱？",
+      "expected": { "requiredConcepts": ["房屋租赁", "提前退租", "违约赔偿"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_015",
+      "baseScenarioId": "lease_termination",
+      "variant": "信息压缩",
+      "userInput": "提前退租违约金类案。",
+      "expected": { "requiredConcepts": ["租赁", "提前退租", "违约金"], "expectedSourceTypes": ["case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_016",
+      "baseScenarioId": "lease_termination",
+      "variant": "地区条件",
+      "userInput": "帮我找上海地区承租人提前退租、法院调整过高违约金的案例。",
+      "expected": { "requiredConcepts": ["上海", "房屋租赁", "提前退租", "违约金过高", "调整"], "expectedSourceTypes": ["case"], "forbiddenConcepts": [], "queryMustCarryConstraints": ["上海"] }
+    },
+    {
+      "id": "query_017",
+      "baseScenarioId": "administrative_reconsideration",
+      "variant": "正式表达",
+      "userInput": "不服行政处罚申请行政复议的期限是多久？",
+      "expected": { "requiredConcepts": ["行政处罚", "行政复议", "申请期限"], "expectedSourceTypes": ["statute"], "forbiddenConcepts": ["刑事上诉"] }
+    },
+    {
+      "id": "query_018",
+      "baseScenarioId": "administrative_reconsideration",
+      "variant": "口语表达",
+      "userInput": "公司收到处罚决定后，最晚多久还能复议？",
+      "expected": { "requiredConcepts": ["行政处罚决定", "行政复议", "期限"], "expectedSourceTypes": ["statute"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_019",
+      "baseScenarioId": "administrative_reconsideration",
+      "variant": "简称表达",
+      "userInput": "行政处罚复议时限。",
+      "expected": { "requiredConcepts": ["行政处罚", "行政复议", "期限"], "expectedSourceTypes": ["statute"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_020",
+      "baseScenarioId": "administrative_reconsideration",
+      "variant": "带送达时间",
+      "userInput": "处罚决定书于5月10日送达，行政复议申请期限应从何时起算？",
+      "expected": { "requiredConcepts": ["行政处罚决定书", "5月10日送达", "行政复议", "期限起算"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_021",
+      "baseScenarioId": "work_injury",
+      "variant": "正式表达",
+      "userInput": "职工在上下班途中发生交通事故，认定工伤需要满足哪些条件？",
+      "expected": { "requiredConcepts": ["上下班途中", "交通事故", "工伤认定", "条件"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_022",
+      "baseScenarioId": "work_injury",
+      "variant": "口语表达",
+      "userInput": "下班回家路上被车撞了，算不算工伤？",
+      "expected": { "requiredConcepts": ["下班途中", "交通事故", "工伤认定"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_023",
+      "baseScenarioId": "work_injury",
+      "variant": "带责任条件",
+      "userInput": "员工下班途中发生车祸并承担事故主要责任，还能否认定工伤？",
+      "expected": { "requiredConcepts": ["下班途中", "交通事故", "主要责任", "工伤认定"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    },
+    {
+      "id": "query_024",
+      "baseScenarioId": "work_injury",
+      "variant": "路线偏离条件",
+      "userInput": "职工下班后绕路接孩子途中发生非本人主要责任的交通事故，是否属于合理上下班路线？",
+      "expected": { "requiredConcepts": ["下班途中", "绕路接孩子", "非本人主要责任", "合理路线", "工伤认定"], "expectedSourceTypes": ["statute", "case"], "forbiddenConcepts": [] }
+    }
+  ]
+}

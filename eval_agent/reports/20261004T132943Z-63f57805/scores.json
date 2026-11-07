@@ -1,0 +1,2121 @@
+{
+  "run_id": "20261004T132943Z-63f57805",
+  "generated_at": "2026-10-04T13:30:06.066970+00:00",
+  "task_count": 15,
+  "run_summary": {
+    "completed": 15,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "source": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": 0.6,
+      "precision": 0.813853,
+      "recall": 0.828194,
+      "f1": 0.820961,
+      "confusion_rate": 0.004329,
+      "non_target_leakage_rate": 0.0,
+      "counts": {
+        "true_positive": 188,
+        "expected": 227,
+        "output": 231,
+        "misattributed": 1,
+        "non_target": 0
+      },
+      "by_category": {
+        "different_cause": {
+          "accuracy": 0.4,
+          "scored_tasks": 5
+        },
+        "same_cause": {
+          "accuracy": 0.8,
+          "scored_tasks": 5
+        },
+        "targeted_single_case": {
+          "accuracy": 0.6,
+          "scored_tasks": 5
+        }
+      },
+      "scored_tasks": 15
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "multi_eval_001",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.947368,
+          "precision": 0.947368,
+          "recall": 0.947368,
+          "f1": 0.947368,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 18,
+          "expected_fact_count": 19,
+          "output_fact_count": 19,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "王某某",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2017年2月1日18时许",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "幸福大道延长线路口",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "behavior",
+              "value": "醉酒驾驶机动车",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=251.45mg/100ml",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "responsibility",
+              "value": "承担事故全部责任",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "车辆受损",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "刘某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2015年11月29日13时许",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "宾阳县黎塘镇建设西路一新建民宅前",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "窃取他人财物",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "财物价值=3489元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "殷某某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2015年5月25日下午",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "location",
+              "value": "本市古浪路、祁安路路口",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及1.11克",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "财物被盗"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "盗窃摩托车一辆"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "different_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_002",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": false,
+          "score": 0.717949,
+          "precision": 0.666667,
+          "recall": 0.777778,
+          "f1": 0.717949,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 14,
+          "expected_fact_count": 18,
+          "output_fact_count": 21,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "冯XX",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2014年12月30日10时15分许",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "本市向阳区鑫鹤房地产开发公司二楼财务室",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "伤情为轻伤二级",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "林某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2013年4月份左右",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "台州市黄岩区新前街道群力村山上、北城街道黄土岭山上、西城街道半洋洪农家乐等地",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "赌场抽头获利=30000余、8000余元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "个人获利=9000余、2400余元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "任某某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2015年8月23日",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "location",
+              "value": "哈尔滨市南岗区手机店",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "非法销售间谍专用器材",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "涉案专用器材被查获并扣押",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_A",
+              "field": "behavior",
+              "value": "故意伤害他人"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "开设赌场并从中获利"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "开设赌场并取得抽头收益"
+            },
+            {
+              "case_id": "case_C",
+              "field": "numbers",
+              "value": "涉案器材数量=一件"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_A",
+              "field": "behavior",
+              "value": "因争执将被害人曲X拽倒并踢踹其头面部"
+            },
+            {
+              "case_id": "case_A",
+              "field": "numbers",
+              "value": "损伤程度属轻伤二级"
+            },
+            {
+              "case_id": "case_A",
+              "field": "responsibility",
+              "value": "公诉机关认为被告人冯XX的行为触犯了《中华人民共和国刑法》××的规定，应当以××追究其刑事责任"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "与他人结伙开设“二张”形式的赌博场头"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "共抽头获利人民币8000余元"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "个人获利人民币2400余元"
+            },
+            {
+              "case_id": "case_C",
+              "field": "responsibility",
+              "value": "公诉机关认为，被告人任某某的行为触犯了《中华人民共和国刑法》××，应当以非法销售间谍专用器材罪追究其刑事责任"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "different_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_003",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": false,
+          "score": 0.666667,
+          "precision": 0.636364,
+          "recall": 0.7,
+          "f1": 0.666667,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 14,
+          "expected_fact_count": 20,
+          "output_fact_count": 22,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "陈永某",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2011年4月至2013年下半年",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "国家经济损失=126万元",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "共同受贿金额=283500元",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "国家经济损失并收受贿赂",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "李某某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2015年10月24日晚",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "富平县尖角村西化组城关供电所东边南巷道",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "被抢手机价值=700元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "被抢金项链价值=1525元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "郭某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2017年3月",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "以要挟手段索取财物",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "索取金额=5000元",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_A",
+              "field": "behavior",
+              "value": "滥用职权帮助骗取国家补贴，并利用职务便利收受财物"
+            },
+            {
+              "case_id": "case_A",
+              "field": "numbers",
+              "value": "个人受贿金额=141700元"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "以暴力手段劫取财物"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "被抢财物合计价值=2225元"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "被害人财物被暴力劫取"
+            },
+            {
+              "case_id": "case_C",
+              "field": "consequence",
+              "value": "以裸照要挟并索取财物"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_A",
+              "field": "location",
+              "value": "淮安区经济和信息化委员会"
+            },
+            {
+              "case_id": "case_A",
+              "field": "behavior",
+              "value": "帮助不符合条件企业骗取国家补贴并收受、索要多家企业贿赂"
+            },
+            {
+              "case_id": "case_A",
+              "field": "responsibility",
+              "value": "公诉机关指控二被告人系共同犯罪，均系主犯，犯滥用职权罪、受贿罪，应数罪并罚"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "以暴力手段尾随抢劫他人手机和项链"
+            },
+            {
+              "case_id": "case_B",
+              "field": "responsibility",
+              "value": "公诉机关指控其以暴力手段抢劫他人财物，应以抢劫罪追究刑事责任"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "所抢赃物已全部返还"
+            },
+            {
+              "case_id": "case_C",
+              "field": "responsibility",
+              "value": "公诉机关指控其行为应追究刑事责任，且如实供述自己罪行"
+            },
+            {
+              "case_id": "case_C",
+              "field": "consequence",
+              "value": "家属主动赔偿被害人损失并取得被害人谅解"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "different_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_004",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": false,
+          "score": 0.777778,
+          "precision": 0.875,
+          "recall": 0.7,
+          "f1": 0.777778,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 14,
+          "expected_fact_count": 20,
+          "output_fact_count": 16,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "张某甲",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2015年6月3日晚6时许",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "坦途镇后双庙屯到保民村路南的树林",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "behavior",
+              "value": "实施强奸相关行为",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "被害人出生日期=2002年12月7日",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "张某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2015年5月",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "伪造票据票面金额=20万元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "骗取货物价值=161460元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "销赃所得=9万余元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "杨X",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2012年3月",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "location",
+              "value": "都江堰市幸福家园小区A35栋X单元X-12号",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "帮助犯罪嫌疑人藏匿",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_A",
+              "field": "numbers",
+              "value": "被害人案发时年龄=12周岁"
+            },
+            {
+              "case_id": "case_A",
+              "field": "consequence",
+              "value": "强奸行为中止"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "使用伪造票据骗取财物"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "骗取货物数量=1404条"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "骗取货物并进行销赃"
+            },
+            {
+              "case_id": "case_C",
+              "field": "consequence",
+              "value": "帮助犯罪嫌疑人藏匿"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_B",
+              "field": "location",
+              "value": "南通市绘园玻纤厂"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "使用伪造的银行承兑汇票支付货款骗取货物后低价销售"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "different_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_005",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.85,
+          "precision": 0.85,
+          "recall": 0.85,
+          "f1": 0.85,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 17,
+          "expected_fact_count": 20,
+          "output_fact_count": 20,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "敖某某",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2016年2月17日21时45分许",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "S202线21KM处",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "behavior",
+              "value": "醉酒驾驶机动车",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=104.3mg/100ml",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "responsibility",
+              "value": "承担事故全部责任",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "邹某某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2014年8月",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "肇庆市端州区睦岗街道南亚路29号首层第一卡某某百货商店",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "组织或参与聚众赌博",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "现场赌资=4589元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "consequence",
+              "value": "聚众赌博并查获赌资",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "王某甲",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2013年6、7月份至2014年10月左右",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "给予国家工作人员财物以谋取利益",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "行贿金额合计=5.5万元",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "通过给付财物谋取拆迁补偿利益",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_A",
+              "field": "consequence",
+              "value": "车辆受损、造成人员受伤"
+            },
+            {
+              "case_id": "case_C",
+              "field": "location",
+              "value": "广元市河西高速路出口"
+            },
+            {
+              "case_id": "case_C",
+              "field": "numbers",
+              "value": "行贿款项=1万元、1万元、0.5万元、3万元"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_A",
+              "field": "consequence",
+              "value": "致宝某某受伤，车辆部分损坏"
+            },
+            {
+              "case_id": "case_C",
+              "field": "location",
+              "value": "广元市"
+            },
+            {
+              "case_id": "case_C",
+              "field": "numbers",
+              "value": "获得蘑菇菌袋拆迁补偿款57万元"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "different_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_006",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.85,
+          "precision": 0.85,
+          "recall": 0.85,
+          "f1": 0.85,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 17,
+          "expected_fact_count": 20,
+          "output_fact_count": 20,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "王某某",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2017年2月1日18时许",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "幸福大道延长线路口",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "behavior",
+              "value": "醉酒驾驶机动车",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=251.45mg/100ml",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "responsibility",
+              "value": "承担事故全部责任",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "车辆受损",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "敖某某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2016年2月17日21时45分许",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "S202线21KM处",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "醉酒驾驶机动车",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=104.3mg/100ml",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "孙某某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2011年12月31日20时许",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "醉酒驾驶机动车",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=274.5mg/100ml",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "车辆受损",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_B",
+              "field": "responsibility",
+              "value": "承担事故全部责任"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "车辆受损、造成人员受伤"
+            },
+            {
+              "case_id": "case_C",
+              "field": "location",
+              "value": "本区区政府地段"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_B",
+              "field": "responsibility",
+              "value": "负此事故的全部责任"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "致宝某某受伤、车辆部分损坏"
+            },
+            {
+              "case_id": "case_C",
+              "field": "location",
+              "value": "本区宁连公路区政府地段"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "same_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_007",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.972973,
+          "precision": 0.947368,
+          "recall": 1.0,
+          "f1": 0.972973,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 18,
+          "expected_fact_count": 18,
+          "output_fact_count": 19,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "殷某某",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2015年5月25日下午",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "本市古浪路、祁安路路口",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及1.11克",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "陈某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2017年6月18日晚",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "潮州市潮安区金石镇龙下市场附近的公厕",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及0.05克",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "扯某某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2015年2月以来",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "location",
+              "value": "石棉县回隆乡竹马村“220KV”变电站",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及0.09克",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [],
+          "extra_facts": [
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "人民币50元"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "same_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_008",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.9,
+          "precision": 0.9,
+          "recall": 0.9,
+          "f1": 0.9,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 18,
+          "expected_fact_count": 20,
+          "output_fact_count": 20,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "王某某",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2017年2月1日18时许",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "幸福大道延长线路口",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "behavior",
+              "value": "醉酒驾驶机动车",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=251.45mg/100ml",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "responsibility",
+              "value": "承担事故全部责任",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "车辆受损",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "敖某某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2016年2月17日21时45分许",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "S202线21KM处",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "醉酒驾驶机动车",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=104.3mg/100ml",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "孙某某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2011年12月31日20时许",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "location",
+              "value": "本区区政府地段",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "醉酒驾驶机动车",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=274.5mg/100ml",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "车辆受损",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_B",
+              "field": "responsibility",
+              "value": "承担事故全部责任"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "车辆受损、造成人员受伤"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_B",
+              "field": "responsibility",
+              "value": "负此事故的全部责任"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "宝某某受伤、车辆部分损坏"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "same_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_009",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.947368,
+          "precision": 0.9,
+          "recall": 1.0,
+          "f1": 0.947368,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 18,
+          "expected_fact_count": 18,
+          "output_fact_count": 20,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "殷某某",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2015年5月25日下午",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "本市古浪路、祁安路路口",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及1.11克",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "陈某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2017年6月18日晚",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "潮州市潮安区金石镇龙下市场附近的公厕",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及0.05克",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "扯某某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2015年2月以来",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "location",
+              "value": "石棉县回隆乡竹马村“220KV”变电站",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及0.09克",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [],
+          "extra_facts": [
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "赃款人民币50元"
+            },
+            {
+              "case_id": "case_C",
+              "field": "person",
+              "value": "邵某某"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "same_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_010",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": false,
+          "score": 0.745098,
+          "precision": 0.703704,
+          "recall": 0.791667,
+          "f1": 0.745098,
+          "confusion_rate": 0.037037,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 19,
+          "expected_fact_count": 24,
+          "output_fact_count": 27,
+          "misattributed_fact_count": 1,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "冯XX",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2014年12月30日10时15分许",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "本市向阳区鑫鹤房地产开发公司二楼财务室",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "伤情为轻伤二级",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "陈某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2016年6月10日17时许",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "义乌市稠江街道石鱼路122号印刷厂305宿舍",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "consequence",
+              "value": "伤情为轻伤二级",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "林某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2013年4月份左右",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "location",
+              "value": "台州市黄岩区新前街道群力村山上、北城街道黄土岭山上、西城街道半洋洪农家乐等地",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "赌场抽头获利=30000余、8000余元",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "开设赌场并取得抽头收益",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "person",
+              "value": "邹某某",
+              "expected_case_id": "case_D",
+              "actual_case_id": "case_D"
+            },
+            {
+              "field": "time",
+              "value": "2014年8月",
+              "expected_case_id": "case_D",
+              "actual_case_id": "case_D"
+            },
+            {
+              "field": "location",
+              "value": "肇庆市端州区睦岗街道南亚路29号首层第一卡某某百货商店",
+              "expected_case_id": "case_D",
+              "actual_case_id": "case_D"
+            },
+            {
+              "field": "behavior",
+              "value": "组织或参与聚众赌博",
+              "expected_case_id": "case_D",
+              "actual_case_id": "case_D"
+            },
+            {
+              "field": "numbers",
+              "value": "现场赌资=4589元",
+              "expected_case_id": "case_D",
+              "actual_case_id": "case_D"
+            },
+            {
+              "field": "consequence",
+              "value": "聚众赌博并查获赌资",
+              "expected_case_id": "case_D",
+              "actual_case_id": "case_D"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_A",
+              "field": "behavior",
+              "value": "故意伤害他人"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "故意伤害他人"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "赔偿金额=6.8万元"
+            },
+            {
+              "case_id": "case_C",
+              "field": "behavior",
+              "value": "开设赌场并从中获利"
+            },
+            {
+              "case_id": "case_C",
+              "field": "numbers",
+              "value": "个人获利=9000余、2400余元"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_A",
+              "field": "behavior",
+              "value": "因要账争执，抓住曲X头发拽倒后用脚踢踹其头面部"
+            },
+            {
+              "case_id": "case_A",
+              "field": "numbers",
+              "value": "轻伤二级"
+            },
+            {
+              "case_id": "case_A",
+              "field": "responsibility",
+              "value": "被告人冯XX如实供述，自愿认罪"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "经事先商量，用事先购买的菜刀砍伤被害人官某"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "轻伤二级"
+            },
+            {
+              "case_id": "case_B",
+              "field": "responsibility",
+              "value": "被告人陈某于2016年7月11日主动投案，自首表现认定"
+            },
+            {
+              "case_id": "case_C",
+              "field": "behavior",
+              "value": "结伙开设二张形式赌博场头抽头获利"
+            },
+            {
+              "case_id": "case_C",
+              "field": "numbers",
+              "value": "抽头获利人民币8000余元"
+            }
+          ],
+          "misattributed_facts": [
+            {
+              "field": "behavior",
+              "value": "组织或参与聚众赌博",
+              "expected_case_id": "case_D",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "category": "same_cause"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_011",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.909091,
+          "precision": 1.0,
+          "recall": 0.833333,
+          "f1": 0.909091,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 5,
+          "expected_fact_count": 6,
+          "output_fact_count": 5,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "刘某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2015年11月29日13时许",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "宾阳县黎塘镇建设西路一新建民宅前",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "窃取他人财物",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "财物价值=3489元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "财物被盗"
+            }
+          ],
+          "extra_facts": [],
+          "misattributed_facts": [],
+          "category": "targeted_single_case"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_012",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": false,
+          "score": 0.615385,
+          "precision": 0.571429,
+          "recall": 0.666667,
+          "f1": 0.615385,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 4,
+          "expected_fact_count": 6,
+          "output_fact_count": 7,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "陈某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2016年6月10日17时许",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "义乌市稠江街道石鱼路122号印刷厂305宿舍",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "consequence",
+              "value": "伤情为轻伤二级",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "故意伤害他人"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "赔偿金额=6.8万元"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "用事先购买的菜刀砍伤被害人官某"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "轻伤二级"
+            },
+            {
+              "case_id": "case_B",
+              "field": "responsibility",
+              "value": "自首表现认定意见书"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "targeted_single_case"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_013",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.833333,
+          "precision": 0.833333,
+          "recall": 0.833333,
+          "f1": 0.833333,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 5,
+          "expected_fact_count": 6,
+          "output_fact_count": 6,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "扯某某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2015年2月以来",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及0.09克",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_C",
+              "field": "location",
+              "value": "石棉县回隆乡竹马村“220KV”变电站"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_C",
+              "field": "location",
+              "value": "石棉县回隆乡竹马村\"220KV\"变电站附近"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "targeted_single_case"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_014",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": false,
+          "score": 0.5,
+          "precision": 0.6,
+          "recall": 0.428571,
+          "f1": 0.5,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 3,
+          "expected_fact_count": 7,
+          "output_fact_count": 5,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "王某甲",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2013年6、7月份至2014年10月左右",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "给予国家工作人员财物以谋取利益",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_B",
+              "field": "location",
+              "value": "广元市河西高速路出口"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "行贿款项=1万元、1万元、0.5万元、3万元"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "行贿金额合计=5.5万元"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "通过给付财物谋取拆迁补偿利益"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_B",
+              "field": "location",
+              "value": "广元市利州区东坝街道办事处城郊村四组拆迁范围"
+            },
+            {
+              "case_id": "case_B",
+              "field": "numbers",
+              "value": "57万元"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "targeted_single_case"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_015",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 0.888889,
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.888889,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 4,
+          "expected_fact_count": 5,
+          "output_fact_count": 4,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "郭某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2017年3月",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "behavior",
+              "value": "以要挟手段索取财物",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "索取金额=5000元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "以裸照要挟并索取财物"
+            }
+          ],
+          "extra_facts": [],
+          "misattributed_facts": [],
+          "category": "targeted_single_case"
+        }
+      }
+    }
+  ]
+}

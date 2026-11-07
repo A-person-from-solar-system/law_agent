@@ -1,0 +1,194 @@
+{
+  "generated_at": "2026-10-04T16:04:51.185890+08:00",
+  "configuration": {
+    "rag_url": "http://127.0.0.1:8001",
+    "mid_url": "http://127.0.0.1:8000",
+    "query_length": 34,
+    "mode": "hybrid",
+    "top_k": 10,
+    "rounds": 5,
+    "timeout_seconds": 120
+  },
+  "direct_results": [
+    {
+      "target": "rag_direct",
+      "round": 1,
+      "success": true,
+      "duration_ms": 14027,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4244,
+        "memoryMB": 1301.9,
+        "cpuSeconds": 22.48
+      }
+    },
+    {
+      "target": "rag_direct",
+      "round": 2,
+      "success": true,
+      "duration_ms": 2313,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4244,
+        "memoryMB": 1301.96,
+        "cpuSeconds": 25.88
+      }
+    },
+    {
+      "target": "rag_direct",
+      "round": 3,
+      "success": true,
+      "duration_ms": 2494,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4244,
+        "memoryMB": 1302.02,
+        "cpuSeconds": 29.55
+      }
+    },
+    {
+      "target": "rag_direct",
+      "round": 4,
+      "success": true,
+      "duration_ms": 2350,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4244,
+        "memoryMB": 1302.02,
+        "cpuSeconds": 33.12
+      }
+    },
+    {
+      "target": "rag_direct",
+      "round": 5,
+      "success": true,
+      "duration_ms": 2322,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4244,
+        "memoryMB": 1302.14,
+        "cpuSeconds": 36.64
+      }
+    }
+  ],
+  "mid_results": [
+    {
+      "target": "mid_layer",
+      "round": 1,
+      "success": true,
+      "duration_ms": 2331,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 3926,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4480,
+        "memoryMB": 31.06,
+        "cpuSeconds": 0.28
+      }
+    },
+    {
+      "target": "mid_layer",
+      "round": 2,
+      "success": true,
+      "duration_ms": 2404,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 3926,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4480,
+        "memoryMB": 31.06,
+        "cpuSeconds": 0.28
+      }
+    },
+    {
+      "target": "mid_layer",
+      "round": 3,
+      "success": true,
+      "duration_ms": 2290,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 3926,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4480,
+        "memoryMB": 31.06,
+        "cpuSeconds": 0.28
+      }
+    },
+    {
+      "target": "mid_layer",
+      "round": 4,
+      "success": true,
+      "duration_ms": 2360,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 3926,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4480,
+        "memoryMB": 31.06,
+        "cpuSeconds": 0.28
+      }
+    },
+    {
+      "target": "mid_layer",
+      "round": 5,
+      "success": true,
+      "duration_ms": 2436,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 3926,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4480,
+        "memoryMB": 31.06,
+        "cpuSeconds": 0.28
+      }
+    }
+  ],
+  "analysis": {
+    "direct": {
+      "success": 5,
+      "total": 5,
+      "first_success_ms": 14027,
+      "warm_median_ms": 2336.0,
+      "all_success_median_ms": 2350.0
+    },
+    "mid_layer": {
+      "success": 5,
+      "total": 5,
+      "median_ms": 2360.0
+    },
+    "findings": [
+      "首次直连明显慢于后续请求，符合 Embedding 模型或索引冷启动特征。",
+      "中台未表现出明显额外延迟，主要耗时更可能位于 RAG。"
+    ]
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "run_id": "20261004T100058Z-1c550a25",
+  "generated_at": "2026-10-04T10:04:46.962404+00:00",
+  "task_count": 15,
+  "run_summary": {
+    "completed": 15,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "source": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": null,
+      "confusion_rate": null,
+      "scored_tasks": 0
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "multi_eval_001",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_002",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_003",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_004",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_005",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_006",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_007",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_008",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_009",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_010",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_011",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_012",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_013",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_014",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_015",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    }
+  ]
+}

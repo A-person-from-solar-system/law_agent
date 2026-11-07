@@ -10,7 +10,7 @@ export function StreamingMessage({ status, text, tools, error, onStop, onRetry }
     <article className="message-row message-assistant streaming-row" aria-live={['completed', 'failed', 'cancelled'].includes(status) ? "polite" : "off"}>
       <div className="message-avatar"><Bot size={17} /></div>
       <div className="message-content">
-        <div className="message-meta"><strong>衡法智策</strong><span>{status === "connecting" ? "正在连接" : status === "generating" ? "正在生成" : status === "cancelled" ? "已停止" : ""}</span></div>
+        <div className="message-meta"><strong>法律知识问答智能体软件V1.0</strong><span>{status === "connecting" ? "正在连接" : status === "generating" ? "正在生成" : status === "cancelled" ? "已停止" : ""}</span></div>
         {tools.length > 0 && <div className="tool-stack">{tools.map((tool) => <div className={`tool-item tool-${tool.status}`} key={tool.id}>{tool.status === "running" ? <LoaderCircle className="spin" size={15} /> : tool.status === "completed" ? <CheckCircle2 size={15} /> : <AlertCircle size={15} />}<span>{tool.status === "running" ? "正在检索相关法律资料" : tool.status === "completed" ? "已完成法律资料检索" : "法律资料检索未完成"}</span><small>{tool.name}</small></div>)}</div>}
         {!text && status === "connecting" && <div className="thinking"><span /><span /><span /></div>}
         {text && <LegalMarkdown>{text}</LegalMarkdown>}

@@ -1,0 +1,163 @@
+{
+  "run_id": "rubric-v2-smoke-3",
+  "generated_at": "2026-10-04T09:14:47.353623+00:00",
+  "task_count": 1,
+  "run_summary": {
+    "completed": 1,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "source": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "disposal": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "multi_case": {
+      "accuracy": null,
+      "confusion_rate": null,
+      "scored_tasks": 0
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "eval_v1_case_0001",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 7,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 7,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：王某某",
+              "时间：2017年2月1日18时许",
+              "地点：幸福大道延长线路口",
+              "行为：醉酒驾驶机动车",
+              "关键数值：酒精含量=251.45mg/100ml",
+              "责任：承担事故全部责任",
+              "案件后果：车辆受损"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent回答完整识别了7个人工事实点，未发现与案件原文冲突的事实陈述；其待核实事项和类案检索内容未作为本案已确认事实主张。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_001501_2cf91810",
+            "cail_001963_5b87e599::chunk_0",
+            "cail_002455_fe575823::chunk_0",
+            "cail_002488_2673749d::chunk_0",
+            "cail_002622_a2341295::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001501_2cf91810",
+            "cail_001963_5b87e599::chunk_0",
+            "cail_002455_fe575823::chunk_0",
+            "cail_002488_2673749d::chunk_0",
+            "cail_002622_a2341295::chunk_0"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 1.0,
+          "passed_items": 5,
+          "applicable_items": 5,
+          "severe_error": false,
+          "passed": true,
+          "reference_rubric": {
+            "offense_direction": "危险驾驶罪",
+            "disposition_type": "拘役",
+            "required_factors": [
+              "醉酒程度",
+              "伪造驾驶证",
+              "事故后果",
+              "事故责任",
+              "认罪情况"
+            ]
+          },
+          "observed_outcome": {
+            "sentence": "4个月",
+            "fine": "0元"
+          },
+          "details": {
+            "items": [
+              {
+                "id": "offense_and_disposition",
+                "name": "罪名与处置方向",
+                "weight": 0.25,
+                "result": "pass",
+                "reason": "回答将行为认定为危险驾驶罪，适用《刑法》第一百三十三条之一，处置方向为拘役并处罚金，与参考 rubric 的罪名和处置类型一致。"
+              },
+              {
+                "id": "rag_evidence_use",
+                "name": "类案证据使用",
+                "weight": 0.25,
+                "result": "pass",
+                "reason": "回答使用了 RAG 返回的真实类案，保留完整 sourceId，并对李×、孙某、刘某等案的关键情节（酒精含量、事故责任、认罪等）进行比较，给出拘役2至4个月的参考区间；同时说明样本量小、与本案在伪造驾驶证情节上不可比，并指出罚金缺乏可比性不宜给具体数值，符合 evidence 使用要求。"
+              },
+              {
+                "id": "key_factors",
+                "name": "关键处置因素",
+                "weight": 0.25,
+                "result": "pass",
+                "reason": "回答覆盖了醉酒程度（251.45mg/100ml）、伪造驾驶证、事故后果（车辆受损）、事故责任（全部责任）、认罪情况（庭审无异议）等关键处置因素。"
+              },
+              {
+                "id": "recommendation_quality",
+                "name": "建议可用性",
+                "weight": 0.15,
+                "result": "pass",
+                "reason": "回答给出可执行的处置方向（危险驾驶罪、拘役并处罚金）、参考刑期区间，并提出需核实归案经过、前科、赔偿、伪造驾驶证是否另案处理等补证重点，未仅罗列材料。"
+              },
+              {
+                "id": "uncertainty_and_consistency",
+                "name": "不确定性与结论一致性",
+                "weight": 0.1,
+                "result": "pass",
+                "reason": "回答区分了已确认事实、待核实事实与模型推断，明确参考区间不是确定裁判结果，并说明证据不足及条文未检索到原文等限制；结论与案件事实和本轮 evidence 基本一致。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": ""
+          }
+        }
+      }
+    }
+  ]
+}

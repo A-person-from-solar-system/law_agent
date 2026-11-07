@@ -354,13 +354,12 @@ backend/
 
 #### 6.3.1 触发条件
 
-每次成功完成一轮落盘后检查未压缩区间：
+采用调用前和回答后两阶段检查：
 
-- 完整对话达到 15～20 轮；或
-- 估算 Token 达到约 12,000；或
-- 构建上下文时已接近模型预算。
+1. 调用前先估算不可压缩部分。当前输入、绑定案件、系统提示和工具定义本身超过可输入上限时直接拦截；完整上下文达到可输入空间的 70% 时，先尝试压缩旧历史并重新组装。
+2. 每次成功完成一轮落盘后再次检查：上下文达到 70%，或 Checkpoint 后未压缩对话达到 40 轮且占用达到 25%，触发后台压缩。
 
-阈值必须配置化。轮数是快速兜底，Token 预算是主要依据。
+可输入空间由模型窗口扣除工具循环预留、最终回答预留和安全余量得到。70% 是压缩软阈值，100% 是请求硬上限；轮数只作为长而低密度对话的辅助条件。
 
 #### 6.3.2 压缩范围
 
@@ -588,9 +587,9 @@ KNOWLEDGE_BACKEND=
 KNOWLEDGE_READONLY_DSN=
 REDIS_URL=
 CHECKPOINT_TRIGGER_TURNS=
-CHECKPOINT_TRIGGER_TOKENS=
+CHECKPOINT_MAIN_TRIGGER_RATIO=
+CHECKPOINT_PROACTIVE_TRIGGER_RATIO=
 CHECKPOINT_KEEP_RECENT_TURNS=
-CONTEXT_MAX_TOKENS=
 LOG_LEVEL=
 ```
 

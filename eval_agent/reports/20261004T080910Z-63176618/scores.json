@@ -1,0 +1,2155 @@
+{
+  "run_id": "20261004T080910Z-63176618",
+  "generated_at": "2026-10-04T08:35:41.127712+00:00",
+  "task_count": 20,
+  "run_summary": {
+    "completed": 20,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": 0.960722,
+      "scored_tasks": 20
+    },
+    "source": {
+      "score": 0.717544,
+      "scored_tasks": 19
+    },
+    "disposal": {
+      "score": 0.688631,
+      "scored_tasks": 20
+    },
+    "multi_case": {
+      "accuracy": null,
+      "confusion_rate": null,
+      "scored_tasks": 0
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "eval_v1_case_0001",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1": 0.933333,
+          "true_positive": 7,
+          "false_positive": 1,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 7,
+            "false_positive": 1,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：王某某",
+              "时间：2017年2月1日18时许",
+              "地点：幸福大道延长线路口",
+              "行为：醉酒驾驶机动车",
+              "关键数值：酒精含量=251.45mg/100ml",
+              "责任：承担事故全部责任",
+              "案件后果：车辆受损"
+            ],
+            "incorrect": [
+              "庭审中无异议（自愿认罪）——原文仅载明无异议，未明确认定自愿认罪"
+            ],
+            "missing": [],
+            "reason": "Agent正确识别了全部7个人工事实点，但将原文‘无异议’进一步表述为‘自愿认罪’，属于原文未明确认定的推断，故计1个错误事实点；无遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_001673_f31c616c::chunk_0",
+            "cail_002820_8a1cab8e::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001281_dbb93216",
+            "cail_001673_f31c616c::chunk_0",
+            "cail_002820_8a1cab8e::chunk_0",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.5,
+          "passed_items": 5,
+          "applicable_items": 10,
+          "severe_error": true,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定：危险驾驶罪",
+                "result": "pass",
+                "reason": "Agent以危险驾驶案由分析，并提及《刑法》第133条之一及醉酒驾驶机动车，已识别主要罪名；虽为初步表述且提及伪造驾驶证可能另涉他罪，但未偏离危险驾驶罪的基本方向。"
+              },
+              {
+                "name": "处置方式：拘役",
+                "result": "fail",
+                "reason": "未提出对王某某判处拘役的明确处置建议，仅引用类案中的拘役刑期作为参考且声明不能直接套用。"
+              },
+              {
+                "name": "刑期结果：4个月",
+                "result": "fail",
+                "reason": "没有给出拘役4个月的量刑结论或相近幅度，未完成刑期处置要点。"
+              },
+              {
+                "name": "罚金结果：0元",
+                "result": "fail",
+                "reason": "未就本案罚金刑作出结论，未提及人工处置要点中的罚金结果；引用的类案罚金2500元也不是本案结论。"
+              },
+              {
+                "name": "事故责任",
+                "result": "pass",
+                "reason": "明确记载交警认定王某某负事故全部责任，并将其作为情节参考。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "提到车辆开入路边坑中造成车辆受损，并指出事实中未提及人员伤亡。"
+              },
+              {
+                "name": "主观状态",
+                "result": "fail",
+                "reason": "未分析醉酒驾驶的主观故意或使用伪造驾驶证的主观明知，仅罗列客观行为。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "注意到庭审无异议/自愿认罪，并提示核实自首、坦白及认罪认罚，已考虑认罪类从宽情节。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "提到酒精含量251.45mg/100ml高、发生交通事故、负全部责任、使用伪造驾驶证等从重因素。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "因检索失败而未形成明确罪名、拘役刑期和罚金结论，核心处置建议缺失，与案件事实和人工处置要点不一致。"
+              }
+            ],
+            "severe_error": true,
+            "severe_error_reason": "案件事实和证据足以认定危险驾驶罪并形成拘役及量刑结论，Agent却以检索受限为由未作出明确处置建议，遗漏核心罪名、刑期和罚金结论，未能完成处置建议任务。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0002",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 7,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 7,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：敖某某",
+              "时间：2016年2月17日21时45分许",
+              "地点：S202线21KM处",
+              "行为：醉酒驾驶机动车",
+              "关键数值：酒精含量=104.3mg/100ml",
+              "责任：承担事故全部责任",
+              "案件后果：车辆受损、造成人员受伤"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent回答已覆盖全部人工事实点，表述与原文一致，未发现错误或遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 0.5,
+          "valid_citations": [
+            "cail_002068_8db9c868::chunk_0",
+            "cail_002429_d9aaa85c::chunk_0",
+            "cail_002820_8a1cab8e::chunk_0"
+          ],
+          "invalid_citations": [
+            "cail_002068_8db9c868",
+            "cail_002429_d9aaa85c",
+            "cail_002927_4d9582c8"
+          ],
+          "rag_source_ids": [
+            "cail_001501_2cf91810",
+            "cail_002068_8db9c868::chunk_0",
+            "cail_002429_d9aaa85c::chunk_0",
+            "cail_002820_8a1cab8e::chunk_0",
+            "cail_002927_4d9582c8::chunk_0",
+            "judgment_于某民聚众扰乱社会秩序罪刑事申诉再审审查刑事通知书",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.833333,
+          "passed_items": 10,
+          "applicable_items": 12,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定",
+                "result": "pass",
+                "reason": "初步认定危险驾驶罪，并围绕第133条之一分析；虽提出若重伤可能转交通肇事，但未否定危险驾驶罪，方向与参考一致。"
+              },
+              {
+                "name": "处置方式（拘役）",
+                "result": "fail",
+                "reason": "未明确建议拘役，仅泛称“刑期约1—5个月并处罚金”，未点明危险驾驶罪法定主刑为拘役。"
+              },
+              {
+                "name": "刑期结果（2个月）",
+                "result": "pass",
+                "reason": "给出类似案例1—5个月区间，2个月落于该区间内，且声明为他案参考而非确定预测，符合合理区间可通过。"
+              },
+              {
+                "name": "罚金结果（5000元）",
+                "result": "fail",
+                "reason": "仅泛称并处罚金，引用他案罚金2000、3000、4000元，未提出或涵盖5000元罚金结论。"
+              },
+              {
+                "name": "醉酒程度",
+                "result": "pass",
+                "reason": "列明乙醇含量104.3mg/100ml，并将其作为从重因素考虑。"
+              },
+              {
+                "name": "事故后果",
+                "result": "pass",
+                "reason": "列明宝某某受伤、车辆部分损坏，并提出需伤情鉴定以判断是否涉及交通肇事罪竞合。"
+              },
+              {
+                "name": "事故责任",
+                "result": "pass",
+                "reason": "列明敖某某负事故全部责任，宝某某无责任。"
+              },
+              {
+                "name": "赔偿或调解履行情况",
+                "result": "pass",
+                "reason": "列明案发后与被害人达成赔偿协议，并将其作为从轻因素。"
+              },
+              {
+                "name": "取得谅解情况",
+                "result": "pass",
+                "reason": "列明取得被害人谅解，并将其作为从轻因素。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "考虑了赔偿、谅解、认罪认罚、自首或坦白可能等从宽因素。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "考虑了乙醇含量较高、发生事故、负全部责任、致人受伤等从重因素。"
+              },
+              {
+                "name": "主观状态",
+                "result": "na",
+                "reason": "参考处置要点未单独列明主观状态，且危险驾驶罪主观状态通常争议不大；Agent未展开分析，但不影响主要处置判断。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "pass",
+                "reason": "结论与事实和初步罪名方向一致，未作出明显无据的确定裁判；具体刑期与罚金未锁定，属于保守表述。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "总体未出现罪名方向性错误或明显违反证据裁判的确定结论；主要不足是未明确拘役、2个月及5000元罚金等具体处置，未达严重错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0003",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 6,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：孙某某",
+              "时间：2011年12月31日20时许",
+              "地点：本区区政府地段",
+              "行为：醉酒驾驶机动车（表述为醉酒后无证驾驶无牌三轮摩托车）",
+              "关键数值：酒精含量=274.5mg/100ml",
+              "案件后果：车辆受损"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "参考事实点中除“责任”不纳入评分外，其余6项均被Agent回答正确识别或同义表述；未发现与原文不符的事实性错误，也无遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 0.0,
+          "valid_citations": [],
+          "invalid_citations": [
+            "cail_001588_efb4672c",
+            "cail_001785_02b97b0e",
+            "cail_001935_2950a1ee",
+            "cail_002142_07d21a67",
+            "cail_002616_7d52938e",
+            "cail_002769_f5437be5"
+          ],
+          "rag_source_ids": [
+            "cail_001501_2cf91810",
+            "cail_001588_efb4672c::chunk_0",
+            "cail_001785_02b97b0e::chunk_0",
+            "cail_001935_2950a1ee::chunk_0",
+            "cail_002142_07d21a67::chunk_0",
+            "cail_002616_7d52938e::chunk_0",
+            "cail_002769_f5437be5::chunk_0"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.6,
+          "passed_items": 6,
+          "applicable_items": 10,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定",
+                "result": "pass",
+                "reason": "明确建议以危险驾驶罪（刑法第133条之一）审查，与人工处置要点的罪名一致。"
+              },
+              {
+                "name": "处置方式",
+                "result": "fail",
+                "reason": "未明确建议拘役，仅笼统提出量刑考量方向，未给出主刑种类结论。"
+              },
+              {
+                "name": "刑期结果",
+                "result": "fail",
+                "reason": "未形成拘役2个月或可接受的合理刑期区间结论，仅列举参考案例并声明不可直接预测。"
+              },
+              {
+                "name": "罚金结果",
+                "result": "fail",
+                "reason": "未给出3000元或可接受的合理罚金区间建议。"
+              },
+              {
+                "name": "责任与行为后果",
+                "result": "pass",
+                "reason": "认定醉酒、无证、无牌驾驶并发生碰擦致车辆损坏，同时提示补充损失金额、人员伤害等事实，考虑了行为后果与刑事责任基础。"
+              },
+              {
+                "name": "主观状态与归案情节",
+                "result": "pass",
+                "reason": "指出系被现场抓获而非自动投案，归案后如实供述可评价为坦白而非自首，并涉及认罪态度。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "考虑了如实供述、当庭认罪，并提示赔偿、谅解等待查从宽因素。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "考虑了血液乙醇含量274.5mg/100ml、无证驾驶、无牌驾驶、发生事故等从重因素。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "结论停留在建议审查和参考案例层面，未与人工处置要点中的拘役2个月、罚金3000元形成可核验的一致处置结论。"
+              },
+              {
+                "name": "证据不足下的确定性",
+                "result": "pass",
+                "reason": "对司法解释、车辆属性、道路属性等未核实事项作了保留，未在证据不足时给出确定结论。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "主要问题为未给出明确量刑与罚金结论，但无错误罪名、无证据不足下强行确定结论等严重法律错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0004",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 5,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 5,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：冯XX",
+              "时间：2014年12月30日10时15分许",
+              "地点：本市向阳区鑫鹤房地产开发公司二楼财务室",
+              "行为：故意伤害他人",
+              "案件后果：伤情为轻伤二级"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent回答覆盖了人工事实点中的人员、时间、地点、行为和轻伤二级后果；责任项为“不适用”，未作为需识别的具体事实，且未出现与原文相悖的事实主张。"
+          }
+        },
+        "source": {
+          "status": "not_applicable",
+          "reason": "rag_returned_no_sources"
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.7,
+          "passed_items": 7,
+          "applicable_items": 10,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定与责任",
+                "result": "pass",
+                "reason": "Agent 明确将本案定性为故意伤害（轻伤二级），并指出应追究刑事责任，与参考处置要点中的故意伤害罪一致。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent 完整引用了法医鉴定结论，指出被害人损伤程度为轻伤二级、无残疾，并注意到踢踹头面部等行为后果。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "Agent 以故意伤害定性，并分析互殴、防卫因素及被害人过错，隐含对行为人主观故意和冲突性质的判断，未将本案归为过失或意外事件。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent 考虑了如实供述、自愿认罪、同意量刑建议、被害人建议从轻以及赔偿谅解（需核实）等从宽因素。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent 指出踢踹头面部在量刑上属从重因素，并提示核实前科、累犯等从重情节。"
+              },
+              {
+                "name": "刑期结论",
+                "result": "fail",
+                "reason": "参考处置刑期为14个月，Agent 未给出具体刑期，仅表述为在指控区间下限量刑乃至争取缓刑，结论不够明确，与参考刑期结果不一致。"
+              },
+              {
+                "name": "罚金结论",
+                "result": "fail",
+                "reason": "参考处置罚金为0元，Agent 未提及罚金问题，未明确本案不并处罚金。"
+              },
+              {
+                "name": "处置方式",
+                "result": "pass",
+                "reason": "Agent 提及故意伤害罪可处三年以下有期徒刑、拘役或管制，并讨论缓刑，属于自由刑范畴，方向与参考处置方式一致。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "罪名方向一致，但未采纳或给出14个月刑期结论，且建议争取缓刑，与参考的14个月自由刑处置存在差距，结论一致性不足。"
+              },
+              {
+                "name": "证据不足时是否给出确定结论",
+                "result": "pass",
+                "reason": "Agent 明确说明法条检索未取得来源，并反复提示需承办人核验，未将未核验法条作为确定裁判依据，谨慎程度可接受。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": ""
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0005",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 0.857143,
+          "recall": 1.0,
+          "f1": 0.923077,
+          "true_positive": 6,
+          "false_positive": 1,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 1,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：陈某",
+              "时间：2016年6月10日17时许",
+              "地点：义乌市稠江街道石鱼路122号印刷厂305宿舍",
+              "行为：故意伤害他人",
+              "案件后果：伤情为轻伤二级",
+              "关键数值：赔偿金额=6.8万元"
+            ],
+            "incorrect": [
+              "材料中“××”处存在脱敏/缺字（案件原文无此内容）"
+            ],
+            "missing": [],
+            "reason": "6个人工事实点均被Agent正确识别；Agent额外称材料中有“××”脱敏/缺字，属原文不存在的错误事实识别；无遗漏人工事实点，“责任：不适用”非事实点未计入。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_004433_132c1bbe::chunk_0",
+            "cail_004455_65c16962::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001281_dbb93216",
+            "cail_004433_132c1bbe::chunk_0",
+            "cail_004455_65c16962::chunk_0",
+            "judgment_于某庆故意伤害罪故意毁坏财物罪刑事再审刑事判决书",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.857143,
+          "passed_items": 6,
+          "applicable_items": 7,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名与责任认定",
+                "result": "pass",
+                "reason": "明确以故意伤害罪（致一人轻伤二级）审查，指向刑法第234条，与人工处置要点一致。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "认定被害人官某全身多处创伤构成轻伤二级，后果评价与事实一致。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "指出持事先准备菜刀砍击、报复预谋，属直接故意，考虑了主观恶性。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "考虑主动投案/自首可能、当庭无异议/认罪认罚、赔偿6.8万元并取得谅解。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "考虑事先购买菜刀、预谋报复、纠集多人到场、使用凶器、致多处创伤等从重因素。"
+              },
+              {
+                "name": "量刑结论/刑期一致性",
+                "result": "fail",
+                "reason": "人工处置要点为自由刑、刑期12个月；Agent仅称三年以下有期徒刑并引用类案8/10个月，明确不作确定刑期结论，未形成与12个月自由刑一致的结论。"
+              },
+              {
+                "name": "罚金结果",
+                "result": "na",
+                "reason": "人工处置罚金为0元，故意伤害罪通常不并处罚金；Agent未讨论罚金，不构成关键遗漏。"
+              },
+              {
+                "name": "结论确定性/证据风险",
+                "result": "pass",
+                "reason": "对自首、刑期等保留核实，未在证据不足时给出确定结论。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": ""
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0006",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 0.857143,
+          "f1": 0.923077,
+          "true_positive": 6,
+          "false_positive": 0,
+          "false_negative": 1,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 0,
+            "false_negative": 1,
+            "correct": [
+              "涉案人员：刘某",
+              "时间：2015年11月29日13时许",
+              "地点：宾阳县黎塘镇建设西路一新建民宅前",
+              "行为：窃取他人财物",
+              "案件后果：财物被盗",
+              "关键数值：财物价值=3489元"
+            ],
+            "incorrect": [],
+            "missing": [
+              "责任：不适用"
+            ],
+            "reason": "Agent准确识别了人员、时间、地点、盗窃行为、财物被盗后果及3489元价值等核心事实，未发现与原文冲突的错误事实；但未提及人工事实点中的“责任：不适用”。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_005142_7ab8abdb::chunk_0",
+            "cail_005221_16c61b21::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_004529_f7ee4104::chunk_0",
+            "cail_005142_7ab8abdb::chunk_0",
+            "cail_005221_16c61b21::chunk_0"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.625,
+          "passed_items": 5,
+          "applicable_items": 8,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "责任与罪名认定",
+                "result": "pass",
+                "reason": "Agent 已围绕刑法第264条分析刘某行为可能构成盗窃罪，并讨论数额较大档的罪与非罪问题，虽未最终定论，但已考虑刑事责任方向。"
+              },
+              {
+                "name": "行为后果与涉案数额",
+                "result": "pass",
+                "reason": "Agent 明确梳理涉案摩托车价值3489元，指出价格鉴定、案发时广西数额标准对入罪和量刑档次的决定性影响，考虑了行为后果。"
+              },
+              {
+                "name": "主观状态",
+                "result": "fail",
+                "reason": "Agent 未分析盗窃罪所要求的非法占有目的、主观故意等主观要件，仅提及被告人对事实无异议，主观状态评估缺失。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent 提及坦白、当庭自愿认罪、退赃退赔、被害人谅解等可能的从宽情节，并提示需以卷宗材料核验。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent 提及累犯、多次盗窃、前科材料等从重情节核查，并指出本案材料未见累犯或多次盗窃记载，不宜直接比照相关案例。"
+              },
+              {
+                "name": "量刑结论一致性",
+                "result": "fail",
+                "reason": "人工处置要点要求体现盗窃罪、自由刑、6个月刑期、0元罚金等结论。Agent 未给出明确的罪名认定和量刑处置结论，仅停留在可能构成盗窃罪、需核验数额标准和补充信息的层面，与处置要点不一致。"
+              },
+              {
+                "name": "处置方式与刑期罚金",
+                "result": "fail",
+                "reason": "Agent 未明确建议自由刑及6个月刑期，也未对罚金0元作出结论，仅泛泛提及三年以下有期徒刑、拘役或管制并处罚金，未形成与参考处置一致的具体量刑意见。"
+              },
+              {
+                "name": "证据不足与确定结论",
+                "result": "pass",
+                "reason": "Agent 未在证据不足时强行作出确定有罪或确定量刑结论，而是提示需核验法条、数额标准和情节材料；不存在证据不足却给出确定结论的问题。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "不存在证据不足却作出确定有罪或确定量刑结论的情形；主要问题是未形成明确处置结论，且未分析主观状态。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0007",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 6,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：殷某某",
+              "时间：2015年5月25日下午",
+              "地点：本市古浪路、祁安路路口（Agent表述为上海市古浪路、祁安路路口，同义一致）",
+              "行为：殷某某经事先电话约定，以人民币400元向许某某贩卖2小包白色晶体状毒品",
+              "案件后果：成交后被公安人员当场抓获，体现完成毒品交易",
+              "关键数值：送检许某某的1.11克白色晶体中检出甲基苯丙胺成分"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent回答覆盖了原文人员、时间、地点、行为、交易完成/当场抓获及1.11克毒品鉴定等事实；‘责任：不适用’为不适用项，不计为遗漏；法律定性与辖区存疑提示未作为原文事实点计错。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_006344_83a7c3b1::chunk_0",
+            "cail_007118_53d508dd::chunk_0",
+            "cail_007432_6caa9071::chunk_0",
+            "cail_014137_6a4d4d45"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_006344_83a7c3b1::chunk_0",
+            "cail_007118_53d508dd::chunk_0",
+            "cail_007432_6caa9071::chunk_0",
+            "cail_014137_6a4d4d45"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 4,
+          "applicable_items": 6,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "责任（罪名）",
+                "result": "pass",
+                "reason": "Agent指出起诉方指控贩卖毒品罪，并援引刑法第347条方向，罪名大致正确；虽表述为需核验，但已考虑刑事责任。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent梳理了交易400元、交付2小包、查获1.11克甲基苯丙胺，并认为已着手完成交付、宜按贩卖既遂评价，考虑了行为及后果。"
+              },
+              {
+                "name": "主观状态",
+                "result": "fail",
+                "reason": "未分析殷某某是否明知是毒品而贩卖、是否具有营利目的等主观要件，仅客观描述交易过程。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent提示核查自首、坦白、认罪认罚、特情引诱等从宽可能，未发现证据时未作确定认定，处理审慎。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent提示核查前科、毒品再犯等从重情节，未在缺乏证据时认定，处理审慎。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "未给出具体刑罚结论，未对应人工处置要点的5个月有期徒刑及1000元罚金；仅建议补充信息并参考类案，结论缺失。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "主要不足为未完成量刑结论和主观要件分析，但未出现证据不足却作确定有罪/重刑结论或明显罪名错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0008",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 6,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：陈某",
+              "时间：2017年6月18日晚",
+              "地点：潮州市潮安区金石镇龙下市场附近的公厕",
+              "行为：实施毒品贩卖等相关行为",
+              "案件后果：完成毒品交易（获得赃款50元）",
+              "关键数值：涉毒数量0.05克"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent准确复述了涉案人员、时间、地点、贩卖行为、交易完成及0.05克数量等实质事实；未发现与原文冲突或凭空新增的案件事实。参考中的“责任：不适用”非具体事实点，不计为遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_006170_b56b2215::chunk_0",
+            "cail_006450_b1e1461c::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_006170_b56b2215::chunk_0",
+            "cail_006450_b1e1461c::chunk_0",
+            "cail_014137_6a4d4d45",
+            "judgment_尔某组织领导黑社会性质组织走私贩卖运输毒品非法拘禁敲诈勒索故意伤害死刑复核刑事裁定书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 6,
+          "applicable_items": 9,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定",
+                "result": "pass",
+                "reason": "Agent认定本案构成贩卖毒品罪，与人工处置要点中的罪名一致，并说明系向他人交付毒品并收取对价的行为。"
+              },
+              {
+                "name": "责任认定",
+                "result": "pass",
+                "reason": "Agent指出贩卖毒品无论数量多少均应追究刑事责任，未否定陈某的刑事责任。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent考虑了贩卖0.05克海洛因、获赃款50元等行为后果，并指出属于最低数量档。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "Agent分析了以出卖为目的、有偿转让、牟利目的等主观要素，能够支撑贩卖毒品罪的故意认定。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent考虑了主动交代犯罪事实、自首或坦白、认罪认罚、数量极小、赃款仅50元等从宽因素。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent提示核查累犯、毒品再犯及前科记录，未忽略可能的从重情节。"
+              },
+              {
+                "name": "处置方式与刑期结论",
+                "result": "fail",
+                "reason": "Agent未按人工处置要点给出自由刑及10个月有期徒刑的具体结论，仅建议后续补充信息后提出量刑幅度，处置结论缺失。"
+              },
+              {
+                "name": "罚金结论",
+                "result": "fail",
+                "reason": "Agent未给出罚金3000元的结论，未回应人工处置要点中的罚金结果。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "Agent最终停留在证据补全与情节梳理，未形成与人工处置要点一致的刑期、罚金结论，结论一致性不足。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "主要不足是未输出具体刑期和罚金结论，但罪名、行为后果、主观状态及从宽从重情节均有考虑，且未在证据不足时作出明显错误的确定重判，不构成严重法律错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0009",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 6,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：扯某某",
+              "时间：2015年2月以来",
+              "地点：石棉县回隆乡竹马村“220KV”变电站",
+              "行为：实施毒品贩卖等相关行为",
+              "案件后果：完成毒品交易或查获毒品",
+              "关键数值：涉毒数量=原文涉及0.09克"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent回答准确复述了指控事实、时间、地点、贩毒行为、交易与查获后果及0.09克查获数量，未发现将无原文依据内容作为已确认事实。‘责任：不适用’非案件原文事实，未计入遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_006230_8f388abd::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_006230_8f388abd::chunk_0",
+            "judgment_尔某组织领导黑社会性质组织走私贩卖运输毒品非法拘禁敲诈勒索故意伤害死刑复核刑事裁定书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 6,
+          "applicable_items": 9,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定",
+                "result": "pass",
+                "reason": "Agent已指向《刑法》第347条及贩卖毒品罪，与人工处置要点的罪名方向一致；虽未作终局定性，但未虚构或误定罪名。"
+              },
+              {
+                "name": "责任与共同犯罪",
+                "result": "pass",
+                "reason": "Agent讨论了共同犯罪、主从犯及扯某某出资、联系、收款与邵某某交付的分工，考虑了责任归属。"
+              },
+              {
+                "name": "行为后果与涉毒数量、金额",
+                "result": "pass",
+                "reason": "Agent列明四起交易、得款100元/90元/100元及查获0.09克海洛因，并指出前三起数量缺失、需累计计算，考虑了行为后果和量刑相关数量、金额。"
+              },
+              {
+                "name": "主观状态与牟利目的",
+                "result": "pass",
+                "reason": "Agent指出“从中牟利”属控方主张需证据支撑，并提示邵某某是否明知系毒品、是否受指使等待查事实，考虑了主观状态。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent讨论了“利用未成年人贩毒”从重情节，并正确指出邵某某年龄未载明、不能直接认定，属于审慎考虑从重情节。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent提及控制下交付、特情引诱可能影响量刑，虽未展开认罪认罚等其他从宽情节，但已涉及从宽/酌减方向的审查。"
+              },
+              {
+                "name": "量刑结论（自由刑）",
+                "result": "fail",
+                "reason": "Agent未给出有期徒刑或拘役等自由刑结论，也未落入人工要点反映的36个月左右区间，仅要求补充事实后再分析。"
+              },
+              {
+                "name": "罚金结论",
+                "result": "fail",
+                "reason": "Agent未对罚金刑作出处置或说明，人工要点为罚金0元，存在遗漏。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "Agent全文以事实梳理、待核验问题和检索限制说明为主，未形成终局罪名、刑罚、罚金的可执行处置结论，与人工处置要点不一致。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "未发现明显错误定罪、虚构法条或严重违反证据裁判的结论；主要缺陷是未给出终局量刑和罚金结论，属于不完整而非严重法律错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0010",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 7,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 7,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：陈永某",
+              "时间：2011年4月至2013年下半年",
+              "行为：滥用职权帮助骗取国家补贴，并利用职务便利收受财物",
+              "案件后果：国家经济损失并收受贿赂",
+              "关键数值：国家经济损失=126万元",
+              "关键数值：共同受贿金额=283500元",
+              "关键数值：个人受贿金额=141700元"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent回答的事实梳理覆盖了人工事实点中可评分项，时间以分段方式完整覆盖，人员、行为、后果及三项关键数值均与原文一致；地点和责任不纳入评分，未发现错误事实或遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_007539_5d03e75d::chunk_0",
+            "cail_012037_695ec4c9::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_007539_5d03e75d::chunk_0",
+            "cail_012037_695ec4c9::chunk_0",
+            "cail_014092_22cfa45a",
+            "cail_014093_44d88d44"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 4,
+          "applicable_items": 6,
+          "severe_error": true,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名与责任认定",
+                "result": "fail",
+                "reason": "仅称“涉嫌滥用职权与受贿”，并以材料占位符为由未明确认定受贿罪、滥用职权罪，也未完整给出共同犯罪、主犯、数罪并罚的责任结论。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "准确梳理了滥用职权造成国家损失126万元、受贿283500元、17次收受或索要12家企业贿赂以及损失已挽回等后果。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "注意到“明知不符合条件仍帮助弄虚作假”以及索贿情节，对主观故意和从重主观因素有分析。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "列出自首、如实供述、退赃退赔、挽回国家经济损失等从宽考量因素。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "提到索贿、主犯、共同犯罪、涉案金额等从重或责任加重因素。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "未给出明确处置结论，未体现24个月有期徒刑、罚金0元及数罪并罚等人工处置要点，仅建议补充材料和另行核实，核心结论缺失。"
+              }
+            ],
+            "severe_error": true,
+            "severe_error_reason": "未形成有效处置建议：未明确认定受贿罪、滥用职权罪，未提出刑期24个月、罚金0元及数罪并罚的结论，核心量刑结论缺失。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0011",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 0.875,
+          "recall": 1.0,
+          "f1": 0.933333,
+          "true_positive": 7,
+          "false_positive": 1,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 7,
+            "false_positive": 1,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：林某",
+              "时间：2013年4月份左右",
+              "地点：台州市黄岩区新前街道群力村山上、北城街道黄土岭山上、西城街道半洋洪农家乐等地",
+              "行为：开设赌场并从中获利",
+              "案件后果：开设赌场并取得抽头收益",
+              "关键数值：赌场抽头获利=30000余、8000余元",
+              "关键数值：个人获利=9000余、2400余元"
+            ],
+            "incorrect": [
+              "案号标识 eval_v1_case_0011（案件原文及参考事实点中未出现）"
+            ],
+            "missing": [],
+            "reason": "核心案件事实基本准确识别，起诉事实中的时间、地点、行为、获利数值等均已覆盖；额外出现的案号标识无原文依据，计为错误事实；“责任：不适用”非需提取的正面事实，不构成遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_008919_b4b0e3b1::chunk_0",
+            "cail_008921_384d48ad::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001281_dbb93216",
+            "cail_008919_b4b0e3b1::chunk_0",
+            "cail_008921_384d48ad::chunk_0",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 4,
+          "applicable_items": 6,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "责任认定",
+                "result": "pass",
+                "reason": "Agent明确将罪名指向开设赌场罪、刑法第303条，并区分指控事实与已决事实，同时讨论共同犯罪中主从犯地位，责任认定方向正确。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent梳理了两起开设赌场行为的时间、地点、形式、开设日数、抽头获利总额及个人分成获利，并讨论数额累计问题，对行为后果有实质分析。"
+              },
+              {
+                "name": "主观状态",
+                "result": "fail",
+                "reason": "Agent未分析开设赌场罪的主观故意、营利目的或抽头渔利目的等主观要件，仅讨论共犯地位与作用，主观状态评价缺失。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent提示核查自首、坦白、立功、认罪认罚、退缴违法所得、预缴罚金、初犯偶犯等从宽情节，并说明可据此争取从轻或缓刑。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent提示核查前科、累犯等从重情节，虽未展开具体评价，但已纳入量刑考量范围。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "Agent未给出具体处置结论，未提出有期徒刑24个月、罚金22000元或可接受的量刑区间，仅作初步方向和补充信息，无法与人工处置要点形成结论一致性；但亦未出现相反或明显错误的确定结论。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": ""
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0012",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 8,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 8,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：张某甲",
+              "时间：2015年6月3日晚6时许（18时许）",
+              "地点：坦途镇后双庙屯到保民村路南的树林（车内）",
+              "行为：实施强奸相关行为",
+              "责任：不适用（起诉书相关责任/罪名/量刑为占位符，Agent提示不得据此推断具体内容）",
+              "案件后果：强奸行为中止",
+              "关键数值：被害人出生日期=2002年12月7日",
+              "关键数值：被害人案发时年龄=12周岁（已满12周岁、不满13周岁）"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent回答准确识别了案件原文中的人员、时间、地点、行为、中止后果及被害人出生日期和案发年龄等事实；对起诉书中责任、罪名、量刑的脱敏占位符也作了不擅自补全的提示。未发现事实性错误或遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 0.666667,
+          "valid_citations": [
+            "cail_001281_dbb93216",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ],
+          "invalid_citations": [
+            "judgment_"
+          ],
+          "rag_source_ids": [
+            "cail_001281_dbb93216",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.833333,
+          "passed_items": 5,
+          "applicable_items": 6,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "责任认定",
+                "result": "pass",
+                "reason": "Agent围绕强奸罪展开分析，虽称“可能构成”并要求核验，但未偏离参考罪名；亦识别起诉书占位符问题。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent指出需查明中止前是否造成实际损害，并说明该事实影响免除或减轻处罚，已考虑行为后果。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "Agent区分自动放弃与因意志以外原因停止，讨论中止、未遂、预备，对主观状态分析较充分。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent讨论犯罪中止、未遂、未造成损害可免除、造成损害可减轻，并列举认罪认罚等需核实情节。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent指出被害人案发时未满14周岁属幼女应从重，并提及在校学生、诱骗手段等可能从重因素。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "参考处置为强奸罪、自由刑36个月、罚金0元且考虑犯罪未完成形态；Agent未给出36个月刑期结论，反而提出可能免除或减轻处罚，并因证据待核实而未形成确定处置建议，与参考结论不一致。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "Agent的法律定性及情节分析基本合理，未发现明显错误或证据不足却作确定有罪/重刑结论的情形；主要问题为未给出与参考一致的确定刑期，属于结论不完整或不一致而非严重法律错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0013",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 0.888889,
+          "f1": 0.941177,
+          "true_positive": 8,
+          "false_positive": 0,
+          "false_negative": 1,
+          "details": {
+            "true_positive": 8,
+            "false_positive": 0,
+            "false_negative": 1,
+            "correct": [
+              "涉案人员：李某某",
+              "时间：2015年10月24日晚",
+              "地点：富平县尖角村西化组城关供电所东边南巷道",
+              "行为：以暴力手段劫取财物",
+              "案件后果：被害人财物被暴力劫取",
+              "关键数值：被抢手机价值=700元",
+              "关键数值：被抢金项链价值=1525元",
+              "关键数值：被抢财物合计价值=2225元"
+            ],
+            "incorrect": [],
+            "missing": [
+              "责任：不适用"
+            ],
+            "reason": "Agent准确识别了人员、时间、地点、暴力劫取行为、财物被劫取后果及三项金额，并给出合计2225元；未提及人工事实点中的“责任：不适用”。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 0.0,
+          "valid_citations": [],
+          "invalid_citations": [
+            "cail_009306_f3eb5346",
+            "cail_009464_df53cb1f",
+            "cail_009476_c6713ef4"
+          ],
+          "rag_source_ids": [
+            "cail_009306_f3eb5346::chunk_0",
+            "cail_009464_df53cb1f::chunk_0",
+            "cail_009476_c6713ef4::chunk_0",
+            "judgment_邓某黄某抢劫死刑复核刑事判决书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 4,
+          "applicable_items": 6,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "责任认定",
+                "result": "pass",
+                "reason": "Agent明确将行为定性为抢劫罪，援引刑法第263条并讨论暴力取财与因果关系，罪名与人工处置要点一致。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent列明抢得苹果手机和金项链、鉴定价值合计约2225元、赃物全部返还，并将其纳入量刑考量。"
+              },
+              {
+                "name": "主观状态",
+                "result": "fail",
+                "reason": "Agent未单独分析抢劫故意、非法占有目的等主观要件，也未结合案件事实中的“产生抢劫之念”进行说明；仅从客观行为推断罪名。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent考虑投案可能构成自首（需核实）、退赃退赔已完成、认罪认罚待补充等从宽因素。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent注意排查入户、公共交通工具、致人重伤死亡、多次、数额巨大等加重情形，并提示前科/累犯等从重信息需补充。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "罪名与人工要点一致，但未形成明确处置结论，未给出自由刑、40个月刑期或罚金处理意见，仅作框架性建议，无法与人工处置要点一致。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "无严重法律错误；主要不足是未展开主观要件分析和未形成最终量刑结论。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0014",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 5,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 5,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：郭某",
+              "时间：2017年3月",
+              "行为：以要挟手段索取财物",
+              "案件后果：以裸照要挟并索取财物",
+              "关键数值：索取金额=5000元"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent正确识别了除地点（明确不纳入评分）和责任（不适用）外的全部人工关键事实点，未发现明显错误事实或遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 0.666667,
+          "valid_citations": [
+            "cail_001281_dbb93216",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ],
+          "invalid_citations": [
+            "judgment_"
+          ],
+          "rag_source_ids": [
+            "cail_001281_dbb93216",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 1.0,
+          "passed_items": 6,
+          "applicable_items": 6,
+          "severe_error": false,
+          "passed": true,
+          "details": {
+            "items": [
+              {
+                "name": "责任认定（罪名）",
+                "result": "pass",
+                "reason": "Agent指出以发布裸照相要挟、索要财物符合敲诈勒索罪的行为构造，与参考罪名敲诈勒索罪一致；虽因检索限制未引用具体法条，但定性方向正确。"
+              },
+              {
+                "name": "行为后果（涉案金额、既遂未遂）",
+                "result": "pass",
+                "reason": "Agent分析了索要5000元、是否实际取得、既遂/未遂对量刑档次的影响，并提示核对太原地区数额标准，考虑了行为后果和涉案金额。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "Agent通过“以恶害相通告使被害人产生恐惧而交付财物”的描述，隐含认定了敲诈勒索的故意和非法占有目的，未遗漏主观要件。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent明确提到如实供述（坦白）、家属赔偿并取得谅解，并认为均可作为从宽考量因素。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent指出被害人齐某案发时系未成年人，可作为酌定从重或从严考量因素，并提示未成年人隐私保护。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "pass",
+                "reason": "Agent未作出与参考处置相矛盾的结论，虽未明确给出0个月、0罚金或未判处自由刑的最终结论，但提示了免处/不起诉等非监禁方向，属于证据不完整下的保守处理；未在证据不足时强行下确定量刑结论。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": ""
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0015",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 6,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：邹某某",
+              "时间：2014年8月（Agent表述为2014年8月至9月）",
+              "地点：肇庆市端州区睦岗街道南亚路29号首层第一卡某某百货商店",
+              "行为：接受多人投注六合彩开奖号码，聚众赌博",
+              "案件后果：聚众赌博并查获赌资",
+              "关键数值：现场赌资=4589元"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent准确识别了人工事实点中的涉案人员、时间、地点、行为、案件后果及现场赌资；责任项标注为“不适用”，非案件原文事实，未计入遗漏；未发现与原文冲突的事实错误。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_001281_dbb93216"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001281_dbb93216",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 6,
+          "applicable_items": 9,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定",
+                "result": "pass",
+                "reason": "Agent明确本案定性方向应为赌博罪而非开设赌场罪，与参考罪名方向一致，虽未作最终定论但未偏离。"
+              },
+              {
+                "name": "处置方式（自由刑）",
+                "result": "pass",
+                "reason": "Agent指出赌博罪基本档可处三年以下有期徒刑、拘役或管制，覆盖参考的自由刑处置方式。"
+              },
+              {
+                "name": "刑期结果",
+                "result": "fail",
+                "reason": "未给出具体刑期，未体现参考的5个月刑期结论。"
+              },
+              {
+                "name": "罚金结果",
+                "result": "fail",
+                "reason": "参考为罚金0元，Agent却提出并处罚金及没收追缴，未给出罚金0元的处置结论。"
+              },
+              {
+                "name": "量刑考虑（认罪、涉案金额）",
+                "result": "pass",
+                "reason": "Agent提到认罪态度等从轻考量，并关注赌资4589元、投注单据金额等涉案金额。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "Agent归纳了“为图财”并联系赌博罪营利目的，考虑了主观状态。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent考虑了聚众赌博、现场抓获15名参赌人员、查获赌资等行为后果。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent提及认罪态度、退赃、初犯等可作为从轻考量。"
+              },
+              {
+                "name": "从重情节",
+                "result": "na",
+                "reason": "案件无明显从重情节，Agent未特别讨论不构成遗漏。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "Agent未形成与参考处置要点一致的明确结论（罪名、5个月自由刑、罚金0元），而是停留在待补充信息和分析层面。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": ""
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0016",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 8,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 8,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：张某",
+              "时间：2015年5月",
+              "行为：使用伪造票据骗取财物",
+              "案件后果：骗取货物并进行销赃",
+              "关键数值：伪造票据票面金额=20万元",
+              "关键数值：骗取货物数量=1404条",
+              "关键数值：骗取货物价值=161460元",
+              "关键数值：销赃所得=9万余元"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent准确识别了除地点（不纳入评分）和责任（不适用）外的全部人工事实点；未将原文无的事实作为已确认事实，遗漏为0。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 0.0,
+          "valid_citations": [],
+          "invalid_citations": [
+            "cail_007896_29abc726",
+            "cail_013524_03481cb2",
+            "cail_013532_1079c585"
+          ],
+          "rag_source_ids": [
+            "cail_007798_8e94eed5",
+            "cail_007802_8caee9b7",
+            "cail_007896_29abc726::chunk_0",
+            "cail_011767_d16e7a58",
+            "cail_011834_b98c1076",
+            "cail_013524_03481cb2::chunk_0",
+            "cail_013532_1079c585::chunk_0"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.857143,
+          "passed_items": 6,
+          "applicable_items": 7,
+          "severe_error": true,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "责任认定/罪名",
+                "result": "pass",
+                "reason": "已根据使用伪造银行承兑汇票骗取财物的事实，指出司法实践通常以票据诈骗罪（刑法第194条）论处，并提示与诈骗罪、合同诈骗罪竞合，考虑了定性责任。"
+              },
+              {
+                "name": "行为后果与涉案金额",
+                "result": "pass",
+                "reason": "认定交付1404条除尘布袋、鉴定价值161460元、销赃得款9万余元，并指出需明确数额认定口径。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "强调票据诈骗需证明主观明知，列举使用他人身份证手机号、异地低价抛售等可推定明知的客观事实。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "列出自首、坦白、立功、退赔、谅解等情节需核查，未在材料不足时虚构从宽情节。"
+              },
+              {
+                "name": "从重/量刑情节",
+                "result": "pass",
+                "reason": "将涉案金额、赃款追缴、被害人损失弥补纳入量刑考量，符合量刑考虑涉案金额的要点。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "未对罪名作出确定结论，也未给出自由刑刑期60个月和罚金60000元的处置建议，与人工处置要点核心结论不一致。"
+              },
+              {
+                "name": "证据不足时的确定性",
+                "result": "pass",
+                "reason": "对明知、汇票来源、提示付款、退赔等待查事实不作定论，避免证据不足时强行下结论。"
+              }
+            ],
+            "severe_error": true,
+            "severe_error_reason": "未形成与人工处置要点一致的定罪量刑结论，遗漏自由刑和罚金等核心处置内容，作为处置建议评测属于重大缺失。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0017",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 0.857143,
+          "recall": 1.0,
+          "f1": 0.923077,
+          "true_positive": 6,
+          "false_positive": 1,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 1,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：包某某",
+              "时间：2014年4月",
+              "行为：因曾某某说情，指令办案民警隐瞒盗伐数量、减少蓄积量，将刑事案件降格处理",
+              "案件后果：刑事案件转为行政案件处理",
+              "收取款项：六千余元",
+              "返还金额：二万三千元"
+            ],
+            "incorrect": [
+              "检察机关建议以徇私枉法定罪（原文仅显示“××”占位，未明确罪名）"
+            ],
+            "missing": [],
+            "reason": "人工事实点中可评分事实共6项，Agent均以同义表达覆盖，无遗漏。Agent将检察机关建议的罪名补为“徇私枉法”，原文未明确，属无原文依据的推断，计1项错误。地点、责任不纳入评分；Agent另列自首等原文事实但非人工评分点，未计入。 "
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_013935_40c7e7c5",
+            "cail_013940_d06606bb::chunk_0",
+            "cail_013941_ba674bd3::chunk_0",
+            "cail_013944_1b93d1d4::chunk_0",
+            "judgment_纵某刘某徇私枉法罪刑事申诉再审审查刑事通知书"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_013935_40c7e7c5",
+            "cail_013940_d06606bb::chunk_0",
+            "cail_013941_ba674bd3::chunk_0",
+            "cail_013944_1b93d1d4::chunk_0",
+            "judgment_纵某刘某徇私枉法罪刑事申诉再审审查刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.666667,
+          "passed_items": 4,
+          "applicable_items": 6,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定",
+                "result": "fail",
+                "reason": "Agent仅转述检察机关建议并提及徇私枉法罪对应《刑法》第399条，但未明确认定包某某构成徇私枉法罪，而是要求进一步固定主体、闭环客观行为、印证主观要件，结论不明确。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent分析了指令隐瞒盗伐数量、减少蓄积量、将刑事案件转为行政案件处理以及收取六千余元等行为后果。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "Agent明确指出包某某“明知”曲某某涉嫌盗伐林木犯罪，并分析“徇私/徇情”要件需以曾某某说情证言和供述印证。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent考虑了2015年12月31日主动投案自首以及案发后退还二万三千元的退赃退赔情节。"
+              },
+              {
+                "name": "从重情节",
+                "result": "pass",
+                "reason": "Agent提及收取六千余元款项应单独评价，并提示核对是否遗漏从重情节如收取款项。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "人工处置要点为徇私枉法罪、免予刑事处罚、未判处自由刑、0个月刑期、0元罚金；Agent未给出明确最终处置结论，仅建议核对是否符合免除处罚条件，未明确支持免予刑事处罚，结论与处置要点不充分一致。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": ""
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0018",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 0.625,
+          "recall": 0.833333,
+          "f1": 0.714286,
+          "true_positive": 5,
+          "false_positive": 3,
+          "false_negative": 1,
+          "details": {
+            "true_positive": 5,
+            "false_positive": 3,
+            "false_negative": 1,
+            "correct": [
+              "涉案人员：杨X",
+              "时间：2012年3月",
+              "地点：都江堰市幸福家园小区A35栋X单元X-12号",
+              "行为：帮助犯罪嫌疑人藏匿",
+              "案件后果：帮助犯罪嫌疑人藏匿"
+            ],
+            "incorrect": [
+              "案件编号：eval_v1_case_0018",
+              "案名：窝藏、包庇",
+              "检察院指控杨X构成窝藏、包庇（原文仅载指控事实，未明确该罪名）"
+            ],
+            "missing": [
+              "责任：不适用"
+            ],
+            "reason": "核心事实基本正确，但遗漏“责任：不适用”；并加入原文未载的案号、案名及罪名表述。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 0.8,
+          "valid_citations": [
+            "cail_001281_dbb93216",
+            "cail_010696_bfc64cae::chunk_0",
+            "cail_011770_d7ea8732::chunk_0",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ],
+          "invalid_citations": [
+            "judgment_"
+          ],
+          "rag_source_ids": [
+            "cail_001281_dbb93216",
+            "cail_010696_bfc64cae::chunk_0",
+            "cail_011770_d7ea8732::chunk_0",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.333333,
+          "passed_items": 3,
+          "applicable_items": 9,
+          "severe_error": false,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定",
+                "result": "fail",
+                "reason": "参考处置要点明确为窝藏、包庇罪，Agent仅作倾向性分析，未明确认定罪名，且以检索未命中为由未下结论。"
+              },
+              {
+                "name": "处置方式",
+                "result": "fail",
+                "reason": "参考处置方式为自由刑，Agent未提出任何自由刑适用建议。"
+              },
+              {
+                "name": "刑期结果",
+                "result": "fail",
+                "reason": "参考刑期为24个月，Agent未给出任何刑期结论或量刑建议。"
+              },
+              {
+                "name": "罚金结果",
+                "result": "fail",
+                "reason": "参考罚金为0元，Agent未提及是否判处罚金。"
+              },
+              {
+                "name": "责任认定",
+                "result": "fail",
+                "reason": "Agent未明确认定杨X的刑事责任，仅列出待核验事项和辩护方向，未形成责任结论。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent考虑了杨X提供金钱、食品并帮助藏匿的行为，指出其形式更接近窝藏，对行为后果有基本分析。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "Agent注意到事实中的‘明知’要素，并提示需核验明知的证据依据，主观状态有分析。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent考虑了杨X与陈X系夫妻这一近亲属因素可能作为量刑从宽情节，也提及自首、坦白、认罪认罚等可能从宽情节。"
+              },
+              {
+                "name": "从重情节",
+                "result": "na",
+                "reason": "案件事实和参考处置要点中未体现明显从重情节，Agent未讨论从重情节不构成明显遗漏。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "Agent未形成与参考处置要点一致的罪名、自由刑和24个月刑期结论，整体结论与人工处置要点不一致。"
+              }
+            ],
+            "severe_error": false,
+            "severe_error_reason": "Agent未在证据不足时强行给出确定结论，反而明确说明检索未命中并避免定性与量刑结论，因此不构成本评测所指的‘证据不足却给出确定结论’的严重错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0019",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 0.857143,
+          "f1": 0.923077,
+          "true_positive": 6,
+          "false_positive": 0,
+          "false_negative": 1,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 0,
+            "false_negative": 1,
+            "correct": [
+              "涉案人员：王某甲",
+              "时间：2013年6、7月份至2014年10月左右",
+              "行为：给予国家工作人员财物以谋取利益",
+              "案件后果：通过给付财物谋取拆迁补偿利益",
+              "关键数值：行贿款项=1万元、1万元、0.5万元、3万元",
+              "关键数值：行贿金额合计=5.5万元"
+            ],
+            "incorrect": [],
+            "missing": [
+              "地点：广元市河西高速路出口"
+            ],
+            "reason": "Agent正确识别了涉案人员、时间跨度、行为性质、案件后果以及四笔行贿款项和合计5.5万元等事实；未发现将不实事实作为原文事实。遗漏第一笔行贿地点广元市河西高速路出口。责任点标注为不适用，未计入遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 0.0,
+          "valid_citations": [],
+          "invalid_citations": [],
+          "reason": "answer_has_no_source_id"
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.5,
+          "passed_items": 6,
+          "applicable_items": 12,
+          "severe_error": true,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "罪名认定（行贿罪）",
+                "result": "fail",
+                "reason": "仅表述为可能涉及或控方逻辑应为行贿罪，并以未检索到法条为由未明确认定构成行贿罪，未形成与人工处置要点一致的罪名结论。"
+              },
+              {
+                "name": "处置方式（自由刑）",
+                "result": "fail",
+                "reason": "未提出判处自由刑等主刑处置，仅建议核实起诉书和补充材料，未对应人工处置要点。"
+              },
+              {
+                "name": "刑期结果（7个月）",
+                "result": "fail",
+                "reason": "未给出7个月或其他具体刑期结论，刑期处置缺失。"
+              },
+              {
+                "name": "罚金结果（0元）",
+                "result": "fail",
+                "reason": "未说明是否并处罚金，未形成0元罚金或不并处罚金的处置结论。"
+              },
+              {
+                "name": "量刑考虑：涉案金额",
+                "result": "pass",
+                "reason": "梳理四笔款项合计约5.5万元，并提出需按现行数额标准核验，考虑了涉案金额对定罪量刑的影响。"
+              },
+              {
+                "name": "责任要件/主体身份",
+                "result": "pass",
+                "reason": "审查白某某受委派从事公务及可能的国家工作人员身份，并区分王某甲作为行贿方与白某某的职务关系。"
+              },
+              {
+                "name": "行为后果/不正当利益",
+                "result": "pass",
+                "reason": "分析抢栽抢种菌袋纳入补偿、在协议上签字、介绍国土局人员及获得57万元补偿款等请托事项和后果。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "分析王某甲为谋取不正当利益而给予财物，并提示审查被索贿与主动给付的区分。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "考虑了被追诉前主动交待、认罪认罚、被索贿等从宽可能。"
+              },
+              {
+                "name": "从重情节",
+                "result": "fail",
+                "reason": "未分析多次行贿、造成国家补偿款损失等可能从重因素，未全面进行量刑情节审查。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "未形成确定的罪名、自由刑、7个月刑期和0元罚金等处置结论，与人工处置要点缺乏对应；不属于合理区间内的不同表述。"
+              },
+              {
+                "name": "证据不足下是否冒然确定结论",
+                "result": "pass",
+                "reason": "对控方主张与推断作了区分，未在未检索到法条时编造条文或强行作出确定结论。"
+              }
+            ],
+            "severe_error": true,
+            "severe_error_reason": "核心定罪量刑结论缺失：未明确认定行贿罪，也未提出自由刑、7个月刑期及罚金0元等处置意见，导致处置建议无法与人工要点对接。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "eval_v1_case_0020",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 6,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 6,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：任某某",
+              "时间：2015年8月23日",
+              "地点：哈尔滨市南岗区手机店",
+              "行为：非法销售间谍专用器材（回答表述为销售手表式微型摄录器材并被指控非法销售间谍专用器材罪）",
+              "案件后果：涉案专用器材被查获并扣押",
+              "关键数值：涉案器材数量=一件"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent已识别任某某、时间、地点、销售行为及指控罪名、查获扣押和器材数量一件；责任为“不适用”占位，不计为遗漏，未发现事实性错误。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_001281_dbb93216",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001281_dbb93216",
+            "judgment_孙某职务侵占罪再审审查与审判监督刑事通知书"
+          ]
+        },
+        "disposal": {
+          "status": "scored",
+          "score": 0.8,
+          "passed_items": 4,
+          "applicable_items": 5,
+          "severe_error": true,
+          "passed": false,
+          "details": {
+            "items": [
+              {
+                "name": "责任认定",
+                "result": "pass",
+                "reason": "Agent分析了构成要件、销售行为、涉案器材鉴定及可能的刑事责任，虽未最终定论，但已考虑责任层面。"
+              },
+              {
+                "name": "行为后果",
+                "result": "pass",
+                "reason": "Agent确认当场查获、缴获一块器材、鉴定为窃听窃录窃照专用器材、涉案物品已扣押等事实。"
+              },
+              {
+                "name": "主观状态",
+                "result": "pass",
+                "reason": "Agent将是否明知器材性质列为待核实关键信息，并指出主观明知是此类犯罪构成要件的核心。"
+              },
+              {
+                "name": "从宽情节",
+                "result": "pass",
+                "reason": "Agent列出坦白、认罪认罚、初犯、涉案数量仅一件等从宽因素，并建议评估。"
+              },
+              {
+                "name": "从重情节",
+                "result": "na",
+                "reason": "案件事实未见明显从重情节，Agent未认定从重情节不构成遗漏。"
+              },
+              {
+                "name": "结论一致性",
+                "result": "fail",
+                "reason": "人工处置要点为非法生产、销售间谍专用器材罪、自由刑3个月、罚金0元；Agent未给出明确罪名、刑期或罚金结论，反而对罪名匹配提出疑问并称无法给出确切刑期，与处置要点不一致。"
+              }
+            ],
+            "severe_error": true,
+            "severe_error_reason": "Agent未形成与人工处置要点一致的罪名、刑期和罚金结论，未完成处置建议的核心结论部分。"
+          }
+        }
+      }
+    }
+  ]
+}

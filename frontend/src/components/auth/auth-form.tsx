@@ -43,13 +43,13 @@ export function AuthForm() {
   return (
     <main className="auth-page">
       <section className="auth-aside">
-        <div className="auth-brand"><span className="brand-mark"><Scale size={22} /></span><div><strong>衡法智策</strong><small>政企法律智能助手</small></div></div>
+        <div className="auth-brand"><span className="brand-mark"><Scale size={22} /></span><div><strong>法律知识问答智能体软件V1.0</strong><small>法律知识智能问答</small></div></div>
         <div className="auth-copy"><p className="eyebrow">LEGAL INTELLIGENCE PLATFORM</p><h1>让复杂法律问题<br />回归清晰判断</h1><p>连接案件事实、法律规范与企业决策，为每一次咨询提供可追溯的专业依据。</p></div>
         <div className="auth-quote">“明法于心，守法于行，智策于事。”</div>
       </section>
       <section className="auth-panel">
         <form className="auth-card" onSubmit={submit}>
-          <div className="mobile-auth-brand"><Scale size={22} /><strong>衡法智策</strong></div>
+          <div className="mobile-auth-brand"><Scale size={22} /><strong>法律知识问答智能体软件V1.0</strong></div>
           <p className="eyebrow">EMPLOYEE SIGN IN</p>
           <h2>登录法律工作台</h2>
           <p className="auth-hint">使用管理员为您开通的员工账号</p>

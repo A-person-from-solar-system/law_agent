@@ -1,0 +1,11 @@
+基础指令：测试一个评测数据
+python main.py --limit 1
+先运行一条常规多案件测试：
+python main.py --datasets multitask_eval.jsonl --limit 1
+再运行一条10案件压力测试：
+python main.py --datasets multitask_eval_10.jsonl --limit 1
+
+正式运行：
+
+python -m eval_agent.code.main --datasets multitask_eval.jsonl
+python -m eval_agent.code.main --datasets multitask_eval_10.jsonl

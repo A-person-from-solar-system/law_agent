@@ -1,0 +1,229 @@
+{
+  "run_id": "20261004T132346Z-a39cbdaf",
+  "generated_at": "2026-10-04T13:23:48.336528+00:00",
+  "task_count": 1,
+  "run_summary": {
+    "completed": 1,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "source": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": 0.0,
+      "precision": 0.722222,
+      "recall": 0.684211,
+      "f1": 0.702703,
+      "confusion_rate": 0.0,
+      "non_target_leakage_rate": 0.0,
+      "counts": {
+        "true_positive": 13,
+        "expected": 19,
+        "output": 18,
+        "misattributed": 0,
+        "non_target": 0
+      },
+      "by_category": {
+        "different_cause": {
+          "accuracy": 0.0,
+          "scored_tasks": 1
+        }
+      },
+      "scored_tasks": 1
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "multi_eval_001",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": false,
+          "score": 0.702703,
+          "precision": 0.722222,
+          "recall": 0.684211,
+          "f1": 0.702703,
+          "confusion_rate": 0.0,
+          "non_target_leakage_rate": 0.0,
+          "true_positive": 13,
+          "expected_fact_count": 19,
+          "output_fact_count": 18,
+          "misattributed_fact_count": 0,
+          "non_target_fact_count": 0,
+          "missing_case_ids": [],
+          "unexpected_case_ids": [],
+          "correct_facts": [
+            {
+              "field": "person",
+              "value": "王某某",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "time",
+              "value": "2017年2月1日18时许",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "location",
+              "value": "幸福大道延长线路口",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "numbers",
+              "value": "酒精含量=251.45mg/100ml",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "responsibility",
+              "value": "承担事故全部责任",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "consequence",
+              "value": "车辆受损",
+              "expected_case_id": "case_A",
+              "actual_case_id": "case_A"
+            },
+            {
+              "field": "person",
+              "value": "刘某",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "time",
+              "value": "2015年11月29日13时许",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "location",
+              "value": "宾阳县黎塘镇建设西路一新建民宅前",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "numbers",
+              "value": "财物价值=3489元",
+              "expected_case_id": "case_B",
+              "actual_case_id": "case_B"
+            },
+            {
+              "field": "person",
+              "value": "殷某某",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "time",
+              "value": "2015年5月25日下午",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            },
+            {
+              "field": "numbers",
+              "value": "涉毒数量=原文涉及1.11克",
+              "expected_case_id": "case_C",
+              "actual_case_id": "case_C"
+            }
+          ],
+          "missing_facts": [
+            {
+              "case_id": "case_A",
+              "field": "behavior",
+              "value": "醉酒驾驶机动车"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "窃取他人财物"
+            },
+            {
+              "case_id": "case_B",
+              "field": "consequence",
+              "value": "财物被盗"
+            },
+            {
+              "case_id": "case_C",
+              "field": "location",
+              "value": "本市古浪路、祁安路路口"
+            },
+            {
+              "case_id": "case_C",
+              "field": "behavior",
+              "value": "实施毒品贩卖等相关行为"
+            },
+            {
+              "case_id": "case_C",
+              "field": "consequence",
+              "value": "完成毒品交易或查获毒品"
+            }
+          ],
+          "extra_facts": [
+            {
+              "case_id": "case_A",
+              "field": "behavior",
+              "value": "醉酒后使用伪造驾驶证驾驶机动车发生交通事故"
+            },
+            {
+              "case_id": "case_B",
+              "field": "behavior",
+              "value": "盗窃他人停放的二轮摩托车"
+            },
+            {
+              "case_id": "case_C",
+              "field": "location",
+              "value": "上海市古浪路、祁安路路口"
+            },
+            {
+              "case_id": "case_C",
+              "field": "behavior",
+              "value": "以人民币400元的价格贩卖2小包甲基苯丙胺类毒品"
+            },
+            {
+              "case_id": "case_C",
+              "field": "consequence",
+              "value": "成交后被公安人员当场抓获"
+            }
+          ],
+          "misattributed_facts": [],
+          "category": "different_cause"
+        }
+      }
+    }
+  ]
+}

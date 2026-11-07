@@ -10,6 +10,19 @@ export type User = {
   created_at: string;
 };
 export type TokenResponse = { access_token: string; token_type: string; requires_password_change: boolean };
+export type ProvisionedUser = User & { initial_password: string };
+export type ResetPasswordResult = {
+  user_id: string;
+  employee_no: string;
+  initial_password: string;
+  password_expires_at: string;
+};
+export type AdminUserInput = {
+  employee_no: string;
+  name: string;
+  email?: string | null;
+  role: "admin" | "employee";
+};
 
 export type Session = {
   id: string;

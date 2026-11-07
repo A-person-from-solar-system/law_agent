@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { BookOpenText, BriefcaseBusiness, LogOut, Menu, MessageSquareText, Plus, Scale, Trash2, X } from "lucide-react";
+import { BookOpenText, BriefcaseBusiness, LogOut, Menu, MessageSquareText, Plus, Scale, Trash2, UserCog, X } from "lucide-react";
 import { useState } from "react";
 import { createSession, deleteSession, listSessions } from "@/lib/api/sessions";
 import { getMe } from "@/lib/api/auth";
 import { clearToken } from "@/lib/auth/token-store";
 import { formatRelativeTime } from "@/lib/utils";
 
-export function AppSidebar({ activeSessionId, section = "chat" }: { activeSessionId?: string; section?: "chat" | "cases" }) {
+export function AppSidebar({ activeSessionId, section = "chat" }: { activeSessionId?: string; section?: "chat" | "cases" | "admin" }) {
   const router = useRouter();
   const client = useQueryClient();
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ export function AppSidebar({ activeSessionId, section = "chat" }: { activeSessio
       {open && <button className="sidebar-backdrop" onClick={() => setOpen(false)} aria-label="关闭导航" />}
       <aside className={`sidebar app-sidebar ${open ? "sidebar-open" : ""}`}>
         <button className="sidebar-close" onClick={() => setOpen(false)} aria-label="关闭导航"><X size={20} /></button>
-        <Link className="brand" href="/chat"><span className="brand-mark"><Scale size={19} /></span><div><strong>衡法智策</strong><small>政企法律智能助手</small></div></Link>
+        <Link className="brand" href="/chat"><span className="brand-mark"><Scale size={19} /></span><div><strong>法律知识问答智能体软件V1.0</strong><small>法律知识智能问答</small></div></Link>
         <button className="new-chat" onClick={() => create.mutate()} disabled={create.isPending}><Plus size={17} /> 发起新咨询</button>
         <div className="nav-label">最近会话</div>
         <nav className="session-list" aria-label="会话列表">
@@ -37,6 +37,7 @@ export function AppSidebar({ activeSessionId, section = "chat" }: { activeSessio
         </nav>
         <div className="sidebar-bottom">
           <Link className={`sidebar-link ${section === "cases" ? "sidebar-link-active" : ""}`} href="/cases"><BriefcaseBusiness size={17} />案件库</Link>
+          {me.data?.role === "admin" && <Link className={`sidebar-link ${section === "admin" ? "sidebar-link-active" : ""}`} href="/admin/users"><UserCog size={17} />用户管理</Link>}
           <div className="sidebar-link sidebar-link-muted"><BookOpenText size={17} />法律资源 <small>由 Agent 调用</small></div>
           <div className="account-row"><div className="account-avatar">{me.data?.name.slice(0, 1) ?? "员"}</div><div><strong>{me.data?.name ?? "当前员工"}</strong><small>{me.data ? `${me.data.employee_no} · ${me.data.role === "admin" ? "管理员" : "员工"}` : "企业账户"}</small></div><button onClick={logout} aria-label="退出登录"><LogOut size={16} /></button></div>
         </div>

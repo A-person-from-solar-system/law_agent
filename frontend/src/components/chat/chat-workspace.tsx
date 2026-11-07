@@ -39,10 +39,10 @@ export function ChatWorkspace({ sessionId }: { sessionId: string }) {
 
   const selectedCase = cases.data?.find((item) => item.id === session.data?.active_case_id) ?? null;
 
-  const settled = useCallback(() => {
-    void client.invalidateQueries({ queryKey: ["messages", sessionId] });
-    void client.invalidateQueries({ queryKey: ["sessions"] });
-    window.setTimeout(() => setLocalUser(null), 350);
+  const settled = useCallback(async () => {
+    await client.invalidateQueries({ queryKey: ["messages", sessionId] });
+    await client.invalidateQueries({ queryKey: ["sessions"] });
+    setLocalUser(null);
   }, [client, sessionId]);
   const stream = useChatStream(settled);
 

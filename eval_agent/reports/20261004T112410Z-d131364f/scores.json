@@ -1,0 +1,150 @@
+{
+  "run_id": "20261004T112410Z-d131364f",
+  "generated_at": "2026-10-04T11:26:36.596847+00:00",
+  "task_count": 3,
+  "run_summary": {
+    "completed": 3,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "source": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": 1.0,
+      "confusion_rate": 0.0,
+      "scored_tasks": 3
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "multi_10_eval_001",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 65,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C",
+              "case_D",
+              "case_E",
+              "case_F",
+              "case_G",
+              "case_H",
+              "case_I",
+              "case_J"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 65,
+            "passed": true,
+            "reason": "Agent按case_A至case_J逐一分析，覆盖全部期望案件，未遗漏；未引入禁止范围外案件；未发现将某一案件事实归入另一案件的情形。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_10_eval_002",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 55,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C",
+              "case_D",
+              "case_E",
+              "case_F",
+              "case_G",
+              "case_H",
+              "case_I",
+              "case_J"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 55,
+            "passed": true,
+            "reason": "Agent 明确逐案分析了 case_A 至 case_J 全部 10 个案件，案件边界识别完整；未将某一案件的事实点归入其他案件；forbidden_scope 为空，未分析禁止范围外案件。部分地点等细节未完整复述，但不构成案件边界或归因错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_10_eval_003",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 8,
+          "details": {
+            "identified_case_ids": [
+              "case_H"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 8,
+            "passed": true,
+            "reason": "Agent 明确限定仅分析 case_H，未分析 forbidden_scope 中的其他案件；case_H 的涉案人员、时间、行为、后果及关键数值等事实均正确归入 case_H，未发现事实错配或越界分析。"
+          }
+        }
+      }
+    }
+  ]
+}

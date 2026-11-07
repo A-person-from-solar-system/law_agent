@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-10-04T16:07:15.810733+08:00",
+  "configuration": {
+    "rag_url": "http://127.0.0.1:8001",
+    "mid_url": "http://127.0.0.1:8000",
+    "query_length": 34,
+    "mode": "hybrid",
+    "top_k": 10,
+    "rounds": 2,
+    "timeout_seconds": 120
+  },
+  "direct_results": [
+    {
+      "target": "rag_direct",
+      "round": 1,
+      "success": true,
+      "duration_ms": 2293,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4244,
+        "memoryMB": 1302.26,
+        "cpuSeconds": 57.83
+      }
+    },
+    {
+      "target": "rag_direct",
+      "round": 2,
+      "success": true,
+      "duration_ms": 2245,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4244,
+        "memoryMB": 1302.29,
+        "cpuSeconds": 61.3
+      }
+    }
+  ],
+  "mid_results": [],
+  "analysis": {
+    "direct": {
+      "success": 2,
+      "total": 2,
+      "first_success_ms": 2293,
+      "warm_median_ms": 2245.0,
+      "all_success_median_ms": 2269.0
+    },
+    "mid_layer": {
+      "success": 0,
+      "total": 0,
+      "median_ms": null
+    },
+    "findings": [
+      "本次未发现明显冷启动、持续高延迟或服务退出，需要结合 RAG 分段日志继续定位。"
+    ]
+  }
+}

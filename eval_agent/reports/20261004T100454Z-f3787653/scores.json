@@ -1,0 +1,87 @@
+{
+  "run_id": "20261004T100454Z-f3787653",
+  "generated_at": "2026-10-04T10:05:51.371309+00:00",
+  "task_count": 3,
+  "run_summary": {
+    "completed": 3,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "source": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": null,
+      "confusion_rate": null,
+      "scored_tasks": 0
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "multi_10_eval_001",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_10_eval_002",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    },
+    {
+      "task_id": "multi_10_eval_003",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error [WinError 10013] 以一种访问权限不允许的方式做了一个访问套接字的尝试。>"
+        }
+      }
+    }
+  ]
+}

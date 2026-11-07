@@ -1,0 +1,98 @@
+{
+  "run_id": "rubric-v2-smoke-2",
+  "generated_at": "2026-10-04T09:13:59.991236+00:00",
+  "task_count": 1,
+  "run_summary": {
+    "completed": 1,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "source": {
+      "score": 1.0,
+      "scored_tasks": 1
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": null,
+      "confusion_rate": null,
+      "scored_tasks": 0
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "eval_v1_case_0001",
+      "dataset_name": "tasks_eval_v1.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "fact": {
+          "status": "scored",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "true_positive": 7,
+          "false_positive": 0,
+          "false_negative": 0,
+          "details": {
+            "true_positive": 7,
+            "false_positive": 0,
+            "false_negative": 0,
+            "correct": [
+              "涉案人员：王某某",
+              "时间：2017年2月1日18时许",
+              "地点：幸福大道延长线路口",
+              "行为：醉酒驾驶机动车",
+              "关键数值：酒精含量=251.45mg/100ml",
+              "责任：承担事故全部责任",
+              "案件后果：车辆受损"
+            ],
+            "incorrect": [],
+            "missing": [],
+            "reason": "Agent事实表完整覆盖7个人工事实点，关键人员、时间、地点、行为、酒精含量、责任及后果均与案件原文一致；未发现对案件事实的错误陈述或遗漏。"
+          }
+        },
+        "source": {
+          "status": "scored",
+          "score": 1.0,
+          "valid_citations": [
+            "cail_001777_33b41681::chunk_0",
+            "cail_002401_f7c1d870::chunk_0"
+          ],
+          "invalid_citations": [],
+          "rag_source_ids": [
+            "cail_001777_33b41681::chunk_0",
+            "cail_002401_f7c1d870::chunk_0"
+          ]
+        },
+        "disposal": {
+          "status": "not_scored",
+          "reason": "judge_failed",
+          "detail": "Judge request failed: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:1131)>"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+"""Minimal, modular offline evaluator."""

@@ -1,0 +1,97 @@
+{
+  "generated_at": "2026-10-04T16:01:00.854250+08:00",
+  "configuration": {
+    "rag_url": "http://127.0.0.1:8001",
+    "mid_url": "http://127.0.0.1:8000",
+    "query_length": 34,
+    "mode": "hybrid",
+    "top_k": 10,
+    "rounds": 2,
+    "timeout_seconds": 120
+  },
+  "direct_results": [
+    {
+      "target": "rag_direct",
+      "round": 1,
+      "success": true,
+      "duration_ms": 2344,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 10940,
+        "memoryMB": 1303.63,
+        "cpuSeconds": 43.7
+      }
+    },
+    {
+      "target": "rag_direct",
+      "round": 2,
+      "success": true,
+      "duration_ms": 2342,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 5215,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 10940,
+        "memoryMB": 1303.64,
+        "cpuSeconds": 47.14
+      }
+    }
+  ],
+  "mid_results": [
+    {
+      "target": "mid_layer",
+      "round": 1,
+      "success": true,
+      "duration_ms": 2494,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 3926,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4480,
+        "memoryMB": 31.09,
+        "cpuSeconds": 0.27
+      }
+    },
+    {
+      "target": "mid_layer",
+      "round": 2,
+      "success": true,
+      "duration_ms": 2283,
+      "status_code": 200,
+      "evidence_count": 5,
+      "response_bytes": 3926,
+      "error": null,
+      "health_after": true,
+      "process": {
+        "pid": 4480,
+        "memoryMB": 31.09,
+        "cpuSeconds": 0.27
+      }
+    }
+  ],
+  "analysis": {
+    "direct": {
+      "success": 2,
+      "total": 2,
+      "first_success_ms": 2344,
+      "warm_median_ms": 2342.0,
+      "all_success_median_ms": 2343.0
+    },
+    "mid_layer": {
+      "success": 2,
+      "total": 2,
+      "median_ms": 2388.5
+    },
+    "findings": [
+      "中台未表现出明显额外延迟，主要耗时更可能位于 RAG。"
+    ]
+  }
+}

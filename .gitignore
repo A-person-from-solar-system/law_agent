@@ -26,5 +26,7 @@ Thumbs.db
 *.tsbuildinfo
 
 # Existing independently versioned services
+.local-run/
 /agent-engine/
 /mid-layer/
+.env

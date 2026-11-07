@@ -1,0 +1,610 @@
+{
+  "run_id": "20261004T100711Z-736c66e6",
+  "generated_at": "2026-10-04T10:21:16.867155+00:00",
+  "task_count": 18,
+  "run_summary": {
+    "completed": 18,
+    "failed": 0,
+    "error_distribution": {}
+  },
+  "metrics": {
+    "fact": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "source": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "disposal": {
+      "score": null,
+      "scored_tasks": 0
+    },
+    "multi_case": {
+      "accuracy": 1.0,
+      "confusion_rate": 0.0,
+      "scored_tasks": 18
+    },
+    "tool_call": {
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "false_positive_rate": null,
+      "false_negative_rate": null,
+      "counts": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "scored_tasks": 0
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "multi_eval_001",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 19,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 19,
+            "passed": true,
+            "reason": "Agent明确按case_A、case_B、case_C分别分析，未遗漏目标案件，也未将其他检索条目作为独立案件纳入分析。三案事实未交叉错置；case_B、case_C中‘责任：不适用’属非实质项未提及，其余主要事实点均已覆盖。无禁止范围违规。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_002",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 18,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 18,
+            "passed": true,
+            "reason": "Agent 明确区分并分析了 case_A、case_B、case_C 三案，人员、时间、地点、行为、后果及关键数值均归属正确，未发现事实错置；未分析 expected_scope 之外的案件，forbidden_scope 为空，无越界分析。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_003",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 19,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 19,
+            "passed": true,
+            "reason": "Agent明确分列并独立分析 case_A、case_B、case_C，三案事实未互相混用；未分析禁止范围外案件（forbidden_scope 为空）；引用的知识库类案仅作参考且已与目标案件区分，不构成事实归错或范围违规。按事实点语义命中计约19项，未计入处置点。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_004",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 20,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 20,
+            "passed": true,
+            "reason": "Agent 正确识别并分案分析了 case_A、case_B、case_C，三个案件分别对应 eval_v1_case_0012、eval_v1_case_0016、eval_v1_case_0018，未将任一案件事实归错到其他案件，也未分析禁止范围外的案件。其回答中提及约 20 个人工事实点，边界清晰。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_005",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 19,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 19,
+            "passed": true,
+            "reason": "Agent 正确识别并区分了 case_A、case_B、case_C 三个案件，分别进行独立分析，未将任一案件事实归入其他案件，也未分析禁止范围外的案件。部分事实点（如 case_C 的地点）未提及，但案件边界识别准确。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_006",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 17,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 17,
+            "passed": true,
+            "reason": "Agent 分案分析了 case_A、case_B、case_C，未遗漏或新增案件；各案核心事实均归属对应案件，未发现跨案错置事实，也未分析 forbidden_scope 中的案件。部分地点事实未提及，个别扩展细节不在给定事实点中，但不影响案件边界识别。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_007",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 18,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 18,
+            "passed": true,
+            "reason": "Agent 明确按案件 A、B、C 分别分析，三案人员、时间、地点、行为、后果及关键涉毒数量均归入对应案件，未发现事实跨案误置；未分析禁止范围内的案件，也未遗漏应分析案件。外部类案仅作参考提示，未作为待分析案件混入。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_008",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 19,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 19,
+            "passed": true,
+            "reason": "Agent 明确按 case_A、case_B、case_C 逐案梳理并对比，三名被告人、时间、酒精含量、责任、后果等事实均归入对应案件，未发现跨案事实错置。三案均属 expected_scope，forbidden_scope 为空；文中提到的 cail 类案仅作参考，未作为本案范围外案件展开分析。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_009",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 21,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 21,
+            "passed": true,
+            "reason": "Agent 正确识别并逐案分别分析了 case_A（殷某某，2015-05-25，古浪路/祁安路路口，1.11克甲基苯丙胺）、case_B（陈某，2017-06-18晚，潮安区金石镇龙下市场附近公厕，0.05克海洛因）和 case_C（扯某某，2015年2月起，石棉县回隆乡竹马村“220KV”变电站，0.09克海洛因），三案人物、时间、地点、数量与行为均各自归属正确，未出现把某一案件事实归入另一案件的情况；三案的关键数值（1.11克、0.05克、0.09克）与对应案件匹配，未发生跨案混用。expected_scope 与 forbidden_scope 均覆盖全部三案且无禁止范围，故无越界分析。Agent 对重复贩毒次数、利用近亲属交付、到案经过等情节的差异比较均在各自案件内部进行，并无事实错置，仅存在个别案件卷宗细节（如购毒人姓名、另案处理对象）超出给定 fact_points 的补充描述，但不构成跨案误归。综合判定通过。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_010",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 17,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C",
+              "case_D"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 17,
+            "passed": true,
+            "reason": "Agent 分别分析了 case_A、case_B、case_C、case_D，故意伤害组与赌博组未混同，C 的开设赌场与 D 的赌博也明确区分；未发现事实点被归入错误案件，未分析禁止范围外案件。按人工 fact_points 统计，Agent 明确提及约 17 个事实点。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_011",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 6,
+          "details": {
+            "identified_case_ids": [
+              "case_B"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 6,
+            "passed": true,
+            "reason": "Agent仅围绕期望范围内的case_B（盗窃）进行分析，并明确限定在case_B事实范围内；未分析禁止范围内的case_A、case_C，未引用A/C事实，也无事实归错或超范围分析。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_012",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 8,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 8,
+            "passed": true,
+            "reason": "Agent明确将分析范围限定为case_B，并在开头及事实梳理中排除case_A、case_C。其对case_A/case_C仅作边界排除性提及，未展开分析或将其事实归入case_B，未违反禁止范围；同时识别到了全部三个案件边界。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_013",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 9,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 9,
+            "passed": true,
+            "reason": "Agent明确声明仅分析 case_C，并在范围声明中识别了 case_A、case_B、case_C 三个案件边界；未展开分析 case_A/case_B 的事实或处置，仅提及二者名称用于排除，故无越界分析。未发现将 A/B 事实归入 C 或将 C 事实归入 A/B 的情况。按提及的人工事实点计，A/B 仅提及人员姓名，C 提及人员、时间、行为、后果、数量、罪名及部分量刑考虑，共约9项。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_014",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 6,
+          "details": {
+            "identified_case_ids": [
+              "case_B"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 6,
+            "passed": true,
+            "reason": "Agent明确仅分析case_B，未分析禁止的case_A、case_C，也未将A/C事实归入B；在case_B范围内提及人员、时间、行为、后果、款项明细及合计等事实点，案件边界处理正确。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_eval_015",
+      "dataset_name": "multitask_eval.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 5,
+          "details": {
+            "identified_case_ids": [
+              "case_B"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 5,
+            "passed": true,
+            "reason": "Agent明确仅分析case_B，并声明不涉及case_A、case_C、case_D；未将A/C/D事实归入B，也未分析禁止范围案件。按case_B人工事实点计，提及郭某、2017年3月、要挟索取、裸照要挟、5000元等5个事实点；另有未经人工事实点支持的案发地等额外表述，但不构成跨案件边界错误。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_10_eval_001",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 65,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C",
+              "case_D",
+              "case_E",
+              "case_F",
+              "case_G",
+              "case_H",
+              "case_I",
+              "case_J"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 65,
+            "passed": true,
+            "reason": "Agent 按 case_A 至 case_J 逐一分析，完整覆盖全部预期案件，未遗漏；未分析禁止范围外案件；未发现将某一案件事实归入另一案件的情形，案件边界识别正确。"
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_10_eval_002",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 51,
+          "details": {
+            "identified_case_ids": [
+              "case_A",
+              "case_B",
+              "case_C",
+              "case_D",
+              "case_E",
+              "case_F",
+              "case_G",
+              "case_H",
+              "case_I",
+              "case_J"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 51,
+            "passed": true,
+            "reason": "Agent analyzed all expected cases A-J in groups, identified every case, did not omit or add any case, and no cross-case fact misattribution or forbidden-scope analysis was detected. Some locations/times were not repeated, but core facts were not assigned to the wrong cases."
+          }
+        }
+      }
+    },
+    {
+      "task_id": "multi_10_eval_003",
+      "dataset_name": "multitask_eval_10.jsonl",
+      "run_status": "completed",
+      "error_code": null,
+      "error_message": null,
+      "scores": {
+        "multi_case": {
+          "status": "scored",
+          "passed": true,
+          "score": 1.0,
+          "confusion_rate": 0.0,
+          "misattributed_fact_count": 0,
+          "mentioned_fact_count": 8,
+          "details": {
+            "identified_case_ids": [
+              "case_H"
+            ],
+            "missing_case_ids": [],
+            "unexpected_case_ids": [],
+            "misattributed_facts": [],
+            "scope_violations": [],
+            "mentioned_fact_count": 8,
+            "passed": true,
+            "reason": "Agent仅围绕case_H（张某票据诈骗）分析，明确不涉及材料中其他案件；未将其他案件事实归入case_H，也未分析禁止范围内的其他案件，符合expected_scope仅case_H的要求。"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "run_id": "rubric-v2-smoke",
+  "datasets": [
+    "tasks_eval_v1.jsonl"
+  ],
+  "task_count": 1,
+  "config": {
+    "eval_root": "D:\\硕士毕业\\找工作\\project\\lawAgent2.0\\eval_agent",
+    "datasets_dir": "D:\\硕士毕业\\找工作\\project\\lawAgent2.0\\eval_agent\\datasets",
+    "runs_dir": "D:\\硕士毕业\\找工作\\project\\lawAgent2.0\\eval_agent\\runs",
+    "reports_dir": "D:\\硕士毕业\\找工作\\project\\lawAgent2.0\\eval_agent\\reports",
+    "agent_url": "http://127.0.0.1:3100/internal/v1/agent/runs",
+    "agent_token": "",
+    "request_timeout_seconds": 240,
+    "judge_base_url": "https://api.deepseek.com",
+    "judge_api_key": "***",
+    "judge_model": "deepseek-v4-flash",
+    "judge_timeout_seconds": 120,
+    "judge_enabled": true
+  }
+}
